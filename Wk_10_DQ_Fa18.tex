@@ -1,0 +1,352 @@
+\documentclass[12pt,dvipsnames]{article}
+\usepackage[margin=0.4in,footskip=0.1in]{geometry}
+\usepackage{etex}
+\usepackage{amssymb,amsmath,multicol} %<-- InWorksheetExam1 i also have fancyhdr,
+\usepackage{hyperref}
+\usepackage[metapost]{mfpic}
+\usepackage[pdftex]{graphicx}
+\usepackage{csquotes}
+\usepackage{pst-plot}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.9}
+
+\usepackage{tikz}
+\usepackage{tkz-2d}
+\usepackage{tkz-base}
+\usetikzlibrary{calc}
+\usepackage{color}
+\usepackage[inline]{enumitem}
+\usepackage{refcount}%<-- non in WorksheetExam1
+
+%\usepackage[linewidth=1pt]{mdframed}
+
+
+\usepackage[framemethod=TikZ]{mdframed}
+\newcommand{\mdfLABEL}[1]{\node[text width=2em,align=right,anchor=north east,%
+	outer sep=0pt,inner sep=0pt] at ($ (O|-P)
+	-(\the\mdflength{innerleftmargin},0)
+	-0.5*(\the\mdflength{middlelinewidth},0)
+	- (0,\the\mdflength{innertopmargin})
+	+ (0,0.5pt)
+	$) {$\Box$};} %in the original code, $F$ is replaced with #1
+
+\mdfdefinestyle{testframe}{topline=false,rightline=false,bottomline=false,%
+	innerleftmargin=1em,linecolor=white,rightmargin=2em,skipbelow=1em,%
+	tikzsetting={draw=black,line width=.5pt,dashed,dash pattern= on 1pt off 3pt},%
+	firstextra={\mdfLABEL{(i)}},%
+	singleextra={\mdfLABEL{(i)}},%
+	secondextra={\mdfLABEL{$\phantom{.}$}},%
+	middleextra={\mdfLABEL{$\phantom{.}$}},%
+}
+
+
+
+\usepackage{caption}
+\usetikzlibrary{calc,fit,intersections,shapes,calc}
+\usetikzlibrary{backgrounds}
+\usepackage{systeme}
+\usepackage{multicol}
+
+\newcolumntype{?}{!{\vrule width 1pt}}
+
+
+%%These three lines are for the typewriter font. Comment them out if I don't want the font.
+%%%%%%\renewcommand*\ttdefault{lcmtt}
+%%%%%%\renewcommand*\familydefault{\ttdefault} %% Only if the base font of the document is to be typewriter style
+%%%%%%\usepackage[T1]{fontenc}
+%%%%%%
+
+\usepackage{tabularx, booktabs}
+
+
+\newenvironment{myitemize}
+{ \begin{itemize}
+		\setlength{\itemsep}{10pt}
+		\setlength{\parskip}{10pt}
+		\setlength{\parsep}{10pt}     }
+	{ \end{itemize}   
+	
+} 
+
+\usepackage{setspace}
+
+\font\maxi=cminch scaled 100
+\usepackage{tgadventor}
+%\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+\usepackage[T1]{fontenc}
+\newcommand*{\myfont}{\fontfamily{\sfdefault}\selectfont}
+\usepackage{pacioli}
+\usepackage[OT1]{fontenc}
+\usepackage{systeme}
+%\usepackage{ulem}
+
+%\usepackage{spalign}
+
+
+%\usepackage{AlegreyaSans} %% Option 'black' gives heavier bold face
+%% The 'sfdefault' option to make the base font sans serif
+%\renewcommand*\oldstylenums[1]{{\AlegreyaSansOsF #1}}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{%
+		\node[shape=circle,fill=blue!20,draw,inner sep=2pt] (char) {#1};}}
+
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\pagestyle{fancy} 
+
+\rfoot{{\small{Page \thepage\ of \pageref{LastPage}}}}
+\cfoot{}
+\renewcommand{\baselinestretch}{1.50}\normalsize
+
+
+
+
+\makeatletter
+\newenvironment{enumeratecount}[1]
+{\def\thisenumeratecountlabel{#1}\enumerate}
+{\edef\@currentlabel{\number\value{\@enumctr}}%
+	\label{\thisenumeratecountlabel}\endenumerate}
+\makeatother
+
+\usepackage{refcount}
+\newcommand{\addphrase}[3]{% #1 = label, #2 = text if number >1, #3 = text if number =1
+	\ifnum\getrefnumber{#1}>1
+	#2%
+	\else
+	#3%
+	\fi}
+
+
+\makeatletter
+% This command ignores the optional argument for itemize and enumerate lists
+\newcommand{\inlineitem}[1][]{%
+	\ifnum\enit@type=\tw@
+	{\descriptionlabel{#1}}
+	\hspace{\labelsep}%
+	\else
+	\ifnum\enit@type=\z@
+	\refstepcounter{\@listctr}\fi
+	\quad\@itemlabel\hspace{\labelsep}%
+	\fi}
+\makeatother
+
+\newcommand*\circledA[1]{\tikz[baseline=(char.base)]{%
+		\node[shape=circle,fill=green!20,draw,inner sep=2pt] (char) {#1};}}
+
+\opengraphsfile{Wk_10_DQ_Fa18}
+
+\begin{document}
+\thispagestyle{empty}
+
+%	\thispagestyle{empty}
+	\begin{center}
+		{\large{Week 10}}
+	\end{center}
+
+{\bfseries{Textbook sections to read and annotate before class:}} 4.5, 4.6, 4.7 (examples 3 and 4 only).
+%\begin{enumerate*}[label=(\arabic*)]
+
+\smallskip
+
+	{\bfseries{Definitions to memorize before class:}} 
+
+\begin{description}[topsep=0pt,itemsep=-2ex,partopsep=0ex,parsep=1ex]
+\item[From Weeks 1-9] Linear equations and inequalities, feasible region and objective function, linear programming algorithm,  function, domain, range, interval form, transformation, operations on functions, one-to-one function, inverse, polynomial, degree, leading coefficient, end behavior, zero, multiplicity, $x\to \infty$, $x\to -\infty$, rational function, arrow notation from pg 296 ($x\to a^{-}, x\to a^{+}, x\to \infty, x\to -\infty$), vertical asymptote, horizontal asymptote, slant asymptote, exponential function, graph of an exponential function, compound interest, annual percentage yield, $e$, natural exponential function, continuous compounding, $\log_a x$, $\log x$, $\ln x$.
+%\item[From Sections 4.5, 4.6, 4.7] 
+\end{description}
+\smallskip	
+	
+	{\bfseries{Skills to review before class:} }
+\begin{multicols}{2}
+	%\begin{enumerate}[topsep=0pt,itemsep=-2ex,partopsep=0ex,parsep=1ex]
+		
+	\begin{enumerate}[label= {  \arabic*:},labelindent=1em, style = standard,leftmargin=3pc, labelsep=*, itemsep=-2ex,partopsep=0ex,parsep=1ex]
+		\item Rewrite a log identity or equation in exponential form.
+		\item Rewrite a exponential identity or equation in log form.
+		\item Find the domain, range,  vertical asymptote and intercept(s) of a transformation of a logarithmic function.
+		\item Expand or condense an expression using the laws of logarithms.
+		
+		%%%%%%%%%%%%%%%%%%
+	\end{enumerate}
+		
+\end{multicols}
+{\bfseries{Bring to class:} } A paper notebook with your annotations of the reading and your work on the questions listed below; a pen and/or a sharpened pencil and an eraser.
+
+{\bfseries{Laptops/Phones Policy:}}  No devices in class, unless the assignment requires it.
+
+{\bfseries{Audio-Recording:}} I will be calling people (by name) from the class roster to go over the discussion questions: to ensure everyone's privacy, please do not audio-record the class.
+
+	\begin{mdframed}[style=testframe]
+		In Week 10 we solve various types of exponential and logarithmic equations, as a preparation for the application problems on exponential growth and decay, compound interest and logarithmic scales.
+		Please read and annotate sections 4.5, 4.6 and the two examples from section 4.7 before working on the discussion questions. As you read the book, make a list of the key points, and list any questions that you may have. 
+		
+		\begin{enumerate}[label= {  \arabic*:},labelindent=1em, style = standard,leftmargin=3pc, labelsep=*, itemsep=-2ex,partopsep=0ex,parsep=1ex] 
+			\item {\textcolor{red}{Key examples}} you should focus on when reading and annotating {\textcolor{red}{section 4.5}}: examples 1, 2, 3, 10, 12, 13, 14.
+			\item {\textcolor{red}{Key concepts}} you should be able to explain after reading and annotating {\textcolor{red}{section 4.6}}: doubling time, half life, relative growth rate.
+			\item {\textcolor{red}{Key formulas}} that you should memorize and explain after reading {\textcolor{red}{section 4.6}}: $\displaystyle n(t)=n_02^{\frac{t}{a}}$ (what do $\displaystyle n_0, a$ represent in practical terms?), $\displaystyle n(t)=n_0e^{rt}$ (what do $\displaystyle n_0, r$ represent in practical terms?), $\displaystyle m(t)=m_02^{-\frac{t}{a}}$ (what do $\displaystyle m_0, a$ represent in practical terms?).
+			\item {\textcolor{red}{Key examples}} that you should focus on when annotating {\textcolor{red}{section 4.6}}: examples 1, 2, 3, 4, 6.
+\item {\textcolor{red}{Key formula}} that you should memorize and explain after reading {\textcolor{red}{section 4.7}}: the formula for the magnitude of an earthquake on the Richter scale. The formula is: $\displaystyle M=\log\frac{I}{S}$.
+\item {\textcolor{red}{Key examples}} you should focus on when reading and annotating {\textcolor{red}{section 4.7}}: examples 3 and 4.
+			\item If you have questions on {\textcolor{red}{inverse functions}}, please review {\textcolor{red}{section 2.8}} and the examples we solved in class, and email me your questions! %I will be happy to schedule individual appointments and/or meet with you at office hours to review this {\underline{very}} important topic. 
+		\end{enumerate}
+		
+		
+		
+	\end{mdframed}
+
+\begin{center}
+
+{\large{\bfseries{Discussion Questions for Week 10} }}
+\end{center}
+	\begin{enumerate}[label=\protect\circled{\arabic*}]
+		\renewcommand{\labelenumi}{(\arabic{enumi})}
+		%%%%%%%%%%%%%%%%%%%
+		%%%%% https://www.illustrativemathematics.org/HSF-LE.A
+		%%%%% GREAT REFERENCE
+		%%%%%%%%%%%%%%%%%%%
+		
+		\item (Fill in the blanks.) $\displaystyle y = \log _a x \Longleftrightarrow {\boxed{?}}^{\boxed{?}}={\boxed{?}}$.
+		
+		\item In Example 1 on page 361, the textbook solves the exponential equation $\displaystyle 5^{2x}=5^{x+1}$ by comparing the exponents. Why can the base of the exponential (5 in this case) be ignored?
+		
+		%\item On pg 361, the textbook states that the equation $\displaystyle 5^x=160$ cannot be solved with the method described in Example 1. Why?
+		
+		%\item Find the exact solution of the equation $\displaystyle 5^x=160$. %Then use \url{https://www.wolframalpha.com/} to find an approximation of the solution rounded to two decimal places.
+		
+		\item In Example 2 on pg 361-362, the textbook solves the exponential equation $\displaystyle 3^{x+2}=7$.
+		\begin{enumerate}
+			\item Why does the textbook use the common logarithm (that is, the log in base 10) to solve the equation?
+			\item Solve the equation on your own (without peeking at the textbook solution) using common logarithms. 
+			\item The textbook writes the solution as $\displaystyle x=\frac{\log 7}{\log 3}-2$. Can we cancel $\displaystyle \log$ from the numerator and denominator? Can the solution be rewritten as $\displaystyle x=\log \left ( \frac{7}{3} \right ) -2$? Why? Why not?
+			%\item WolframAlpha \url{http://bit.ly/2oq1Lew} gives a decimal approximation of the solution. Round the solution to three decimal places.
+			\item In the sidebar on pg 362, the textbook gives the solution in terms of the natural logarithm $\ln$ (the log with base $e$). Solve the equation using $\ln$ and showing all the steps of the solution.
+			\item The change of base formula (pg 357) states that $\displaystyle \log_b x=\frac{\log_a x}{\log _a b}$. Use the change of base formula to verify that the solution found using the common logarithm is the same as the solution found using the natural logarithm.
+			%\item Draw $\displaystyle f(x)=3^{x+2}$ (use function transformations!) and $y=7$, identify the point of intersection and check that its $x$-coordinate is the solution of the equation.
+			%\item Substitute $\displaystyle x=\frac{\log 7}{\log 3}-2$ in the equation $\displaystyle 3^{x+2}=7$ and simplify as much as possible to show that the left side simplifies to 7, and so  the solution is correct.
+		\end{enumerate}
+		\item In Example 10 on pg 365, the textbook solves the equation $\log (x+2) + \log (x-1)=1$ by solving the quadratic equation $(x+4)(x-3)=0$.
+		\begin{enumerate}
+			\item Solve the logarithmic equation (without looking at the solution in the textbook.)
+			\item Explain why $x=-4$ is not a solution of the logarithmic equation.
+			\item Substitute $x=3$ in the logarithmic equation, and simplify as much as possible to show that it is a solution of the equation.
+		\end{enumerate}
+	\item Solve the equations, if possible. If it is not possible to solve an equation with the tools discussed in the course so far, please explain why.
+		\begin{multicols}{2}
+	\begin{enumerate}
+		\item $\displaystyle 1.7(2.1^{3x})=2(4.5^x)$;
+		\item $\displaystyle3^{4\log x}=5$;
+		\item $\displaystyle 5(1.044^x)=x+10$;
+\item $\displaystyle 10e^{3x}-e=2e^{3x}$;
+\item $\displaystyle \log x + \log (x-1)=\log 2$.
+
+	\end{enumerate}	
+\end{multicols}
+\end{enumerate}	
+
+\begin{mdframed}[style=testframe]
+	\begin{itemize}
+		\item[$\circ$] Eventually, any quantity which grows exponentially must double in size (that is, it must grow by 100\%). Since the percent rate of growth is constant, then the time it takes for the quantity to double is constant as well, and it is called the {\underline{doubling time}}. 
+
+	\item[$\circ$] The doubling time is independent of the initial size of the quantity.
+	\item[$\circ$] The doubling time is independent of the time. For example, consider an exponentially increasing quantity $Q(t)$ with $Q(0)=10$ and doubling time two days. Thetime it takes $Q$ to grow from 10 to 20 units is the same as the time it takes $Q$ to grow from 500 to 1000 units.	
+\item[$\circ$] If the doubling time $D$ and the initial size $C$ of an exponentially growing quantity are known, then the size $S(t)$ of the quantity at time $t$ is $\displaystyle S(t)=C\cdot 2^{\frac{t}{D}}$.	
+		\item[$\circ$] Any exponential $\displaystyle f(x)=C\cdot a^x$ ($a>1$) can be written as $f(x)=C\cdot e^{kx}$. The constant $k$ is called the {\underline{relative growth rate}}. Note that $\displaystyle k=\ln a$.
+		
+
+	\end{itemize}
+	
+\end{mdframed}
+
+\begin{enumerate}[label=\protect\circled{\arabic*},resume]
+	
+
+	
+	\item Find the doubling time for each of the following situations:
+	\begin{enumerate}
+		\item A population grows according to $P(t)=100e^{0.2t}$, where $t$ is in years.
+		\item A population grows by $10\%$ per year.
+		\item A company's profits are increasing by a growth factor of 1.2 per year.
+		\end{enumerate}
+	
+\item A population's initial size is 100 units. After one month, the population's size is 	102 units. Assume that the population grows exponentially. Find the growth factor, the relative growth rate and the doubling time.
+
+	\item (From Week 8) By which percent will each of the described below increase in one year?
+	\begin{multicols}{2}
+	\begin{enumerate}
+		\item Doubles in size every 7 years;
+		\item Triples in size every 7 years;
+		\item Grows by 3\% per month;
+		\item Grows by 10\% every 4 months.
+	\end{enumerate}
+	\end{multicols}
+		
+	\item If \$10,000 is deposited in an account that pays interest at an annual rate of 0.3\% compounded continuously, how long does it take for the account to double?
+	
+	\item The price of an item has increased by 40\% in five years. Assume that the price increases exponentially. How long does it take for the price of the item to increase by 5\%?
+
+\end{enumerate}	
+
+\begin{mdframed}[style=testframe]
+	\begin{itemize}
+		\item[$\circ$] Eventually, any quantity which decreases exponentially must become half in size. The time it takes for the quantity to decrease by a factor of 2 is constant as well, and it is called the {\underline{half life}}. 
+		
+		\item[$\circ$] The half life is independent of the initial size of the quantity.
+		\item[$\circ$] The half life is independent of the time. For example, consider an exponentially decreasing quantity $Q(t)$ with $Q(0)=100$ and half life equal to two days. The the time it takes $Q$ to decrease from 100 to 50 units is the same as the time it takes $Q$ to decrease from 50 to 25 units.	
+		\item[$\circ$] If the half life $H$ and the initial size $C$ of an exponentially decreasing quantity are known, then the size $S(t)$ of the quantity at time $t$ is $\displaystyle S(t)=C\cdot 2^{-\frac{t}{H}}$.	
+		\item[$\circ$] Any exponential $\displaystyle f(x)=C\cdot a^x$ ($0<a<1$) can be written as $f(x)=C\cdot e^{kx}$. The constant $k$ is called the {\underline{relative decay rate}}. Note that $\displaystyle k=\ln a$.
+		
+		
+	\end{itemize}
+	
+\end{mdframed}
+
+\begin{enumerate}[label=\protect\circled{\arabic*},resume]
+		\item A quantity is decreasing exponentially and has a half life of two days. What percent of the initial amount of the quantity is left four days after we start observing? What percent is left six days after we start observing?
+		
+		\item Find the half life of a quantity which decays at a rate of 5\% per year.
+		\item If 17\% of a quantity decays in five years, what is its half life? 
+		
+		\item A quantity decays to 17\% of its initial amount in 5 years. What is its half life?
+	\end{enumerate}
+	
+	
+	
+	{\bf More problems on exponential growth and decay}
+	\begin{enumerate}[label=\protect\circled{\arabic*},resume]
+\item 	The size of a population is modeled by $\displaystyle f(x)=200(1-0.9e^{-0.2x})$, where  $x$ is in years.
+	
+	\begin{enumerate}
+		\item What is the initial size of the population?
+		\item How long will it take the population to reach a size of 100 units?
+		\item What is the meaning of the number 200 (in the formula) in practical terms?
+		
+	\end{enumerate}
+		\item The website \url{http://www.worldometers.info/world-population/} states that the current world population is about 7.662 billion people, and the current relative  growth rate is 1.09\%. Assume that the yearly  growth rate remains constant for the next few years (note, however, that it is expected to decrease).
+		\begin{enumerate}
+			\item  Find the projected world population in 2020.
+			\item How many years will it take for the population to reach 9 billion people?
+		\end{enumerate}
+	%	\item Japan's current population is about 127 million people, and the current relative growth rate is -0.23\%.  Assume that the yearly percent growth rate remains constant for the next few years. How many years from now will Japan's population be 123 million people? (Set up an equation, solve it to find the exact number of years, then use \url{https://www.wolframalpha.com/} to find an approximation of the number of years, rounded to two decimal places.)
+		\item Niger's current population is approximately 21 million people, and the current yearly percent growth rate is 3.89\%. South Korea's population is approximately 51 million people, with a yearly percent growth rate of 0.37\%. Assume that the yearly  growth rates remain constant for the next few years. In how many years will the two populations be equal?
+		
+	%	\item Assume that the thickness of a (very long) piece of paper is 0.1 millimeters. Two weeks ago, we have calculated the thickness of the paper after $n$ folds (it is $0.1\cdot 2^n$). Find the number of times that the paper should be folded so that the resulting thickness is equal to the distance between the Earth and the Moon ($\displaystyle 3.703\times 10^8$ meters.)
+
+\item (Problem 12, pg 386) The 1906 earthquake in San Francisco had a magnitude of 8.3 on the Richter scale. At the same time in Japan a earthquake with magnitude 4.9 caused only minor damage. How many times more intense was the San Francisco earthquake compared with the earthquake in Japan? 
+\end{enumerate}
+
+ \begin{mdframed}[style=exampledefault,linecolor=red,linewidth=5pt,roundcorner=5pt,frametitle={Looking ahead to the conclusion of the course...}]
+
+%{\underline{Advice on how to excel in precalculus:} }
+\begin{enumerate}[label= {  \arabic*:},labelindent=2em, style = standard,leftmargin=4pc, labelsep=*, noitemsep]
+ 		\item Familiarize yourself with the {\bf{assessment plan}} for the class.
+\item Mark down the date, time and location of the {\bf{final exam}} on your calendars. 
+\item Keep a list of important concepts and formulas for possible inclusion in the {\bf{note-card}} that you may use in the final exam. Don't wait until finals' week to review.
+\item Continue submitting the {\bf{weekly essay and homework}}. Essays and homework count for 12.5\% of the final course grade (homework is 7.5\% and essays are 5\%).
+\item Always read the sections we will cover{\bf{ before class}}.
+\item Always attempt the discussion questions{\bf{ before class}}.
+\end{enumerate}
+ 	\end{mdframed}
+
+
+\end{document} 
+              

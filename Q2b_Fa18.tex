@@ -1,0 +1,129 @@
+\documentclass[11pt,answers]{exam}
+
+\usepackage{etex}
+\usepackage{amssymb,amsmath,multicol} %<-- InWorksheetExam1 i also have fancyhdr,
+
+\usepackage[metapost]{mfpic}
+\usepackage[pdftex]{graphicx}
+\usepackage{tabu}
+
+\usepackage{pst-plot}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.9}
+
+\usepackage{tikz}
+\usepackage{tkz-2d}
+\usepackage{tkz-base}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows}
+
+\usepackage{systeme}
+
+\usepackage[inline]{enumitem}
+\usepackage{refcount}%<-- non in WorksheetExam1
+
+\usepackage{pstricks-add,pst-eucl}
+\usepackage{systeme}
+\usepackage{setspace}
+
+\def\f{x+1} \def\g{-x/3+2}  \def\h{-x+3}
+
+\newcommand{\vasymptote}[2][]{
+    \draw [densely dashed,#1] ({rel axis cs:0,0} -| {axis cs:#2,0}) -- ({rel axis cs:0,1} -| {axis cs:#2,0});
+}
+
+\addpoints
+%\printanswers
+\noprintanswers
+
+\opengraphsfile{Q2b_Sp18}
+
+\begin{document}
+\extrawidth{-0.3in}
+\pagestyle{headandfoot}
+
+\setlength{\hoffset}{-.25in}
+
+\extraheadheight{-.3in}
+\runningheadrule
+\firstpageheader{\bfseries {Precalculus}}{ \Large {Quiz 2 }}{\bfseries {9/18/18}} 
+
+\begin{center}
+	This quiz has \numquestions\ questions, for a total of \numpoints\
+	points and \numbonuspoints\ bonus points.
+\end{center}
+
+
+\firstpagefooter{} %%&&CHANGED
+                {}
+                {%Points earned: \hbox to 0.5in{\hrulefill}
+                % out of  \pointsonpage{\thepage} points
+                }
+                 
+						
+
+\vspace*{0.1cm}
+\hbox to \textwidth { \scshape {Name:} \enspace\hrulefill}
+\vspace{0.1in}
+
+
+
+
+\pointpoints{point}{points}
+
+\begin{questions}
+
+
+\addpoints
+
+\question The function $f(t)=4.5t+28$ gives the water level $f(t)$ (in feet) in a reservoir $t$ years after a dam was built.  
+\begin{parts}
+\part[1] Which of the following statements best describes the meaning of the number 4.5  in practical terms?
+
+		\begin{choices}
+			\choice If we move 1 unit to the right, then we move 4.5 units up;
+\choice It is the change in $y$ over the change in $x$;
+\choice Every year, the water level changes by 4.5 feet;
+\choice Every year, the water level increases by 4.5 feet;
+\item  It is rise over run.
+\end{choices}
+\part[1] Describe the meaning of the number 28  in practical terms.
+
+\fillwithdottedlines{2cm}
+\end{parts}
+
+\question In a certain state the maximum speed permitted on freeways is 65 mi/h, and the minimum is 40 mi/h. The fine $F$ for violating these limits is \$40 for every mile above the maximum or below the minimum. Assume that  $x$ is the speed (in mi/h) at which you are driving.
+
+\begin{parts}
+	
+	\part[2] \label{part:one} Find $F(70)$ and explain how You arrived at Your answer.
+	
+	\fillwithdottedlines{1.5cm}
+	
+		\part[2] \label {part:two} Find $F(50)$ and explain how You arrived at Your answer.
+		
+		\fillwithdottedlines{1.5cm}
+		
+		\part[2] What do your answers in Parts (\ref{part:one}) and (\ref{part:two}) mean? Please circle the best answer among the options listed below.
+		
+		\begin{choices}
+			\choice The maximum speed one can drive without paying a fine.
+			\choice The awards for obeying the speed limits on the freeway.
+			\choice The fines for violating the speed limits on the freeway.    
+			\choice The initial speed at which a fine will be incurred.
+			\choice The minimum speed one can drive without paying a fine.
+			\end{choices}
+			\end{parts}
+	\bonusquestion[2] Consider the function $T(x)$ measuring the thickness $T$ (in millimeters) of the eggshell of a bird as a function of the
+	concentration $x$ (in parts per million, or ppm) of the pesticide DDE in the water of the environment where the bird lives.  What is the meaning of the
+	statement $T(190) = 0.2$ in practical terms? Please note that Your answer should include units (ppm and millimeters).
+	
+	\fillwithdottedlines{1.5cm}
+	
+
+
+
+
+\end{questions}
+
+\end{document}                 

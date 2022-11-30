@@ -1,0 +1,197 @@
+\documentclass[12pt,dvipsnames]{article}
+\usepackage[margin=0.4in,footskip=0.1in]{geometry}
+\usepackage{etex}
+\usepackage{amssymb,amsmath,multicol} %<-- InWorksheetExam1 i also have fancyhdr,
+\usepackage{hyperref}
+\usepackage[metapost]{mfpic}
+\usepackage[pdftex]{graphicx}
+\usepackage{csquotes}
+\usepackage{pst-plot}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.9}
+
+\usepackage{tikz}
+\usepackage{tkz-2d}
+\usepackage{tkz-base}
+\usetikzlibrary{calc}
+\usepackage{color}
+\usepackage[inline]{enumitem}
+\usepackage{refcount}%<-- non in WorksheetExam1
+
+\usepackage[linewidth=1pt]{mdframed}
+
+\usepackage{caption}
+\usetikzlibrary{calc,fit,intersections,shapes,calc}
+\usetikzlibrary{backgrounds}
+\usepackage{systeme}
+
+
+%%These three lines are for the typewriter font. Comment them out if I don't want the font.
+%%%%%%\renewcommand*\ttdefault{lcmtt}
+%%%%%%\renewcommand*\familydefault{\ttdefault} %% Only if the base font of the document is to be typewriter style
+%%%%%%\usepackage[T1]{fontenc}
+%%%%%%
+
+\usepackage{tabularx, booktabs}
+
+
+\newenvironment{myitemize}
+{ \begin{itemize}
+		\setlength{\itemsep}{10pt}
+		\setlength{\parskip}{10pt}
+		\setlength{\parsep}{10pt}     }
+	{ \end{itemize}   
+	
+} 
+
+\usepackage{setspace}
+
+\font\maxi=cminch scaled 100
+\usepackage{tgadventor}
+%\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+\usepackage[T1]{fontenc}
+\newcommand*{\myfont}{\fontfamily{\sfdefault}\selectfont}
+\usepackage{pacioli}
+\usepackage[OT1]{fontenc}
+\usepackage{systeme}
+
+
+%\usepackage{spalign}
+
+
+%\usepackage{AlegreyaSans} %% Option 'black' gives heavier bold face
+%% The 'sfdefault' option to make the base font sans serif
+%\renewcommand*\oldstylenums[1]{{\AlegreyaSansOsF #1}}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{%
+		\node[shape=circle,fill=blue!20,draw,inner sep=2pt] (char) {#1};}}
+
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\pagestyle{fancy} 
+
+\rfoot{{\small{Page \thepage\ of \pageref{LastPage}}}}
+\cfoot{}
+\renewcommand{\baselinestretch}{1.50}\normalsize
+
+
+
+\opengraphsfile{Wk_1_DQ_Fa18}
+
+\begin{document}
+\thispagestyle{empty}
+
+%	\thispagestyle{empty}
+	\begin{center}
+		{\large{Week 1}}
+	\end{center}
+
+{\bfseries{Textbook sections to read and annotate before class:}} 10.1, 10.9 (linear inequalities and systems of linear inequalities ONLY), {\emph{Focus on Modeling}} for chapter 10 (make sure you work through the details and calculations of example 1.)
+\smallskip
+
+	{\bfseries{Definitions to memorize before class:}} linear equation, slope, $y$-intercept, $x$-intercept.
+\smallskip	
+	
+{\bfseries{Skills to review before class:} }
+	\begin{enumerate} 
+		\item Working with exponents and radicals; working wuth algebraic and rational expressions; solving linear and quadratic equations;
+		\item Finding the slope of a line if two points are given;
+		\item Writing the equation of the line through two points;
+		Deciding whether the slope is negative, positive, zero or does not exist, by looking at the graph of the line;
+		\item Graphing a line given as $\displaystyle y=mx+b$ and showing the quantities $m$ and $b$ on the graph;
+		\item Graphing a line given as $x=b$;
+		\item Solving a system of two equations and two unknowns using algebra (substitution or elimination);
+		\item Solving a system of two linear equations and two unknowns by graphing;
+		\item Solving a linear inequality in one unknown.
+	
+\end{enumerate}
+	
+		
+{\bfseries{Bring to class:} } A paper notebook with your annotations of the reading and your work on the questions listed below; a pen and/or a sharpened pencil and an eraser.
+
+{\bfseries{Laptops/Phones Policy:}}  No devices in class, unless the assignment requires it.
+
+{\bfseries{Audio-Recording:}} I will be calling people (by name) from the class roster to go over the discussion questions: to ensure everyone's privacy, please do not audio-record the class.
+
+
+\begin{center}
+
+{\large{\bfseries{Review and Reading Questions for Week 1} }}
+\end{center}
+\begin{enumerate}[label=$\blacktriangleright$ {\bf  \arabic*:}]
+	\item What is $\displaystyle \frac{0}{1}$? Why?
+	\item What is $\displaystyle \frac{1}{0}$? Why?
+	\item Why is $\displaystyle (-2)^2=4$ but $\displaystyle -2^2=-4$?
+	%\item What is 99 increased by 1\%? Why?
+	\item What is a linear equation in two unknowns? Explain in words, then write a specific example. How many solutions does your equation have?
+	\item In Example 1 pg 681, you have read about solving the system:
+ \[
+\systeme*{2x+y=1,3x+4y=14}
+\]
+	
+	Why do you think the textbook chooses to solve this system by substitution, rather than by elimination?
+	
+	%\item In Example 2 on pg 682, you have read  how to solve the system
+	
+%	\[
+%	\systeme*{3x+2y=14, x-2y=2}
+%	\]
+%	by elimination. Can you solve this system by substitution? Do you think that, for this problem, substitution and elimination are more or less equal in terms of solving the system easily, or do you think that one method is better than the other? Why? Why not?
+	
+	%\item Write a linear system of two equations in two unknowns where the graph of the solution set is two parallel lines. 
+	%\item After many of the solved examples, your book suggests problems that you may solve to verify that you have understood the concepts illustrated in the examples. On pg 687, your book solves a mixture problem (example 8), and then refers you to problem 67 on pg 689. After reading example 8, identify the two unknowns ($x$ and $y$) in problem 67, and set up the linear system for this problem.
+	\item In Example  1 (b) on pg 757, the book uses two test points, $(0,0)$ and $(5,5)$, to graph the solution set of the inequality. Why are test points needed? Could just one test point have been used? What about no test points?
+	\item What is the difference between the solution set of $x+2y\geq 5$ (the inequality in example 1b, pg 757) and the solution set of $x+2y=5$?
+	\item True or False? {\emph{If a linear inequality in two unknowns $x$ and $y$ has a $\geq$ sign, then I will always need to shade above the line to get the solution set of the inequality.}} Explain your reasoning (that is, if you think that the statement is always true, explain why; if you think that the statement is false, write an inequality for which the statement does not work.)
+	\item On {\url{www.wolframalpha.com}}, type {\ttfamily{ solve x + 2y >=5}}. Compare the graph of the solution set with figure 4 on pg 758.
+	\item \label{item: system1} Example 3 on pg 759 explains how to visualize the solution set of the system:
+	
+		\[
+	\systeme*{x+3y \leq 12, x+y \leq 8, x \geq 0, y  \geq 0}
+	\]
+
+Explain in your own words (using complete sentences) how you would proceed to solve this system.
+
+\item Figure 6 on pg 759 shows that the solution set of the system in question \ref{item: system1} is bounded. What does {\emph{bounded}} mean? 
+
+
+\item %http://map.mathshell.org/download.php?fileid=1613
+(Challenge problem, adapted from a Classroom Challenge problem designed by UC Berkeley and The University of Nottingham.) You need to load a truck with identical boxes. The size of each box is 50 cm by 60 cm by 80 cm. The size of the empty space that we will fill with boxes is: length = 240 cm; width =  890 cm; height = 250 cm. Explain how you would arrange the boxes to fit in as many boxes as possible, and state how many boxes will fit in the truck.
+
+\end{enumerate}
+{\large{\bfseries{Linear Programming  Question:} }}
+
+\begin{enumerate}[resume,label=$\blacktriangleright$ {\bf  \arabic*:}]
+		%\item In example 1 on page 775, the manufacturer has two restrictions (time on cutting machine and time on sewing machine). Describe at least two other possible restrictions and write them as math formulas. Then solve the example againg using the two restrictions from the book together with the ones that you have defined.  	
+%\item A furniture manufacturer makes wooden tables and chairs. The production process involves two basic types of labor: carpentry and finishing. A table requires 2 hours of carpentry and 1 hour of finishing, and a chair requires 3 hours of carpentry and $\displaystyle \frac{1}{2}$ hour of finishing.  The manufacturer's employees can supply a maximum of 108 hours of carpentry work and 20 hours of finishing work per day. 
+%\begin{enumerate}[label=$\diamondsuit$ {\bf  \arabic*:}]
+%\item Call $x$ the number of tables built in one day, and $y$ the number of chairs built in one day. Write an inequality (involving $x$ and $y$) describing the fact that the employees can provide at most 108 hours of carpentry work to build $x$ tables and $y$ chairs in a day.
+%\item  Write another inequality (involving $x$ and $y$) describing the fact that the employees can provide at most 20 hours of finishing work to build $x$ tables and $y$ chairs in a day.
+%\item If the employees provide exactly 108 hours of carpentry work and exactly 20 hours of finishing work in one day, how many chairs and how many tables are built on that day?
+%\end{enumerate}
+
+
+\item (Adapted from a Power Point presentation on the National Numeracy Network website.) Consider a pizza parlor that makes mini-pizzas and calzones.  Two resources are used to make each:  labor time and baking time. There is a limited amount of labor time available and a limited amount of baking time available. Assume that the ingredients of mini-pizzas and calzones are the same. Mini-pizzas sell for \$7 and calzones sell for \$5. Each calzone requires 6 minutes of labor time to produce and each mini-pizza requires 10 minutes of labor time to produce.  Suppose the pizza parlor employs only one production worker for an eight-hour shift, so 480 minutes of labor time are available.  Suppose the baking time for each mini-pizza is 4 minutes, while the baking time for each calzone is 6 minutes.  Suppose the oven is available for a total of 400 minutes per eight-hour shift (because it requires 80 minutes of cleaning per shift). How many pizzas and calzones must be produced in one 8-hour shift in order to maximize the profit?
+
+	
+\end{enumerate}
+
+ \begin{mdframed}[style=exampledefault,frametitle={Looking Ahead to Next Week...}]
+ 	{\underline{Definitions that you should be familiar with by the next class meeting:} }
+ 	\begin{enumerate}[label= {  \arabic*:},labelindent=2em, style = standard,leftmargin=4pc, labelsep=*, noitemsep]
+ 		\item Objective function;
+ 		\item Feasible region;
+ 		\item Bounded/unbounded solution set.
+ 		%\item Amplitude, period and midline.
+ 	\end{enumerate}
+ 	{\underline{You should be able to:} }
+ 	\begin{enumerate}[label= {  \arabic*:},labelindent=2em, style = standard,leftmargin=4pc, labelsep=*, noitemsep]
+ 		\item Graph the solution set of a system of linear equations in two unknowns;
+ 		\item Decide whether the solution set is bounded or unbounded;
+ 		\item Find the maximum or minimum of an objective function in a feasible region.
+ 	\end{enumerate}
+ 	\end{mdframed}
+
+
+\end{document} 
+              

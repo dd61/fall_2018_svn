@@ -1,0 +1,348 @@
+\documentclass[12pt,dvipsnames]{article}
+\usepackage[margin=0.4in,footskip=0.1in]{geometry}
+\usepackage{etex}
+\usepackage{amssymb,amsmath,multicol} %<-- InWorksheetExam1 i also have fancyhdr,
+\usepackage{hyperref}
+\usepackage[metapost]{mfpic}
+\usepackage[pdftex]{graphicx}
+\usepackage{csquotes}
+\usepackage{pst-plot}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.9}
+
+\usepackage{tikz}
+\usepackage{tkz-2d}
+\usepackage{tkz-base}
+\usetikzlibrary{calc}
+\usepackage{color}
+\usepackage[inline]{enumitem}
+\usepackage{refcount}%<-- non in WorksheetExam1
+
+%\usepackage[linewidth=1pt]{mdframed}
+
+
+\usepackage[framemethod=TikZ]{mdframed}
+\newcommand{\mdfLABEL}[1]{\node[text width=2em,align=right,anchor=north east,%
+	outer sep=0pt,inner sep=0pt] at ($ (O|-P)
+	-(\the\mdflength{innerleftmargin},0)
+	-0.5*(\the\mdflength{middlelinewidth},0)
+	- (0,\the\mdflength{innertopmargin})
+	+ (0,0.5pt)
+	$) {$\Box$};} %in the original code, $F$ is replaced with #1
+
+\mdfdefinestyle{testframe}{topline=false,rightline=false,bottomline=false,%
+	innerleftmargin=1em,linecolor=white,rightmargin=2em,skipbelow=1em,%
+	tikzsetting={draw=black,line width=.5pt,dashed,dash pattern= on 1pt off 3pt},%
+	firstextra={\mdfLABEL{(i)}},%
+	singleextra={\mdfLABEL{(i)}},%
+	secondextra={\mdfLABEL{$\phantom{.}$}},%
+	middleextra={\mdfLABEL{$\phantom{.}$}},%
+}
+
+
+
+\usepackage{caption}
+\usetikzlibrary{calc,fit,intersections,shapes,calc}
+\usetikzlibrary{backgrounds}
+\usepackage{systeme}
+\usepackage{multicol}
+
+\newcolumntype{?}{!{\vrule width 1pt}}
+
+
+%%These three lines are for the typewriter font. Comment them out if I don't want the font.
+%%%%%%\renewcommand*\ttdefault{lcmtt}
+%%%%%%\renewcommand*\familydefault{\ttdefault} %% Only if the base font of the document is to be typewriter style
+%%%%%%\usepackage[T1]{fontenc}
+%%%%%%
+
+\usepackage{tabularx, booktabs}
+
+
+\newenvironment{myitemize}
+{ \begin{itemize}
+		\setlength{\itemsep}{10pt}
+		\setlength{\parskip}{10pt}
+		\setlength{\parsep}{10pt}     }
+	{ \end{itemize}   
+	
+} 
+
+\usepackage{setspace}
+
+\font\maxi=cminch scaled 100
+\usepackage{tgadventor}
+%\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+\usepackage[T1]{fontenc}
+\newcommand*{\myfont}{\fontfamily{\sfdefault}\selectfont}
+\usepackage{pacioli}
+\usepackage[OT1]{fontenc}
+\usepackage{systeme}
+
+
+%\usepackage{spalign}
+
+
+%\usepackage{AlegreyaSans} %% Option 'black' gives heavier bold face
+%% The 'sfdefault' option to make the base font sans serif
+%\renewcommand*\oldstylenums[1]{{\AlegreyaSansOsF #1}}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{%
+		\node[shape=circle,fill=blue!20,draw,inner sep=2pt] (char) {#1};}}
+
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\pagestyle{fancy} 
+
+\rfoot{{\small{Page \thepage\ of \pageref{LastPage}}}}
+\cfoot{}
+\renewcommand{\baselinestretch}{1.50}\normalsize
+
+
+
+
+\makeatletter
+\newenvironment{enumeratecount}[1]
+{\def\thisenumeratecountlabel{#1}\enumerate}
+{\edef\@currentlabel{\number\value{\@enumctr}}%
+	\label{\thisenumeratecountlabel}\endenumerate}
+\makeatother
+
+\usepackage{refcount}
+\newcommand{\addphrase}[3]{% #1 = label, #2 = text if number >1, #3 = text if number =1
+	\ifnum\getrefnumber{#1}>1
+	#2%
+	\else
+	#3%
+	\fi}
+
+
+\makeatletter
+% This command ignores the optional argument for itemize and enumerate lists
+\newcommand{\inlineitem}[1][]{%
+	\ifnum\enit@type=\tw@
+	{\descriptionlabel{#1}}
+	\hspace{\labelsep}%
+	\else
+	\ifnum\enit@type=\z@
+	\refstepcounter{\@listctr}\fi
+	\quad\@itemlabel\hspace{\labelsep}%
+	\fi}
+\makeatother
+
+\newcommand*\circledA[1]{\tikz[baseline=(char.base)]{%
+		\node[shape=circle,fill=green!20,draw,inner sep=2pt] (char) {#1};}}
+
+\opengraphsfile{Wk_9_DQ_Fa18}
+
+\begin{document}
+\thispagestyle{empty}
+
+%	\thispagestyle{empty}
+	\begin{center}
+		{\large{Week 9}}
+	\end{center}
+
+{\bfseries{Textbook sections to read and annotate before class:}} 4.3 and 4.4..
+%\begin{enumerate*}[label=(\arabic*)]
+
+\smallskip
+
+	{\bfseries{Definitions to memorize before class:}} 
+
+\begin{description}[topsep=0pt,itemsep=-2ex,partopsep=0ex,parsep=1ex]
+\item[From Weeks 1-6] Linear equations and inequalities, feasible region and objective function, linear programming algorithm,  function, domain, range, interval form, transformation, operations on functions, one-to-one function, inverse, polynomial, degree, leading coefficient, end behavior, zero, multiplicity, $x\to \infty$, $x\to -\infty$, rational function, arrow notation from pg 296 ($x\to a^{-}, x\to a^{+}, x\to \infty, x\to -\infty$), vertical asymptote, horizontal asymptote, slant asymptote, exponential function, graph of an exponential function, compound interest, annual percentage yield, $e$, natural exponential function, continuous compounding.
+\item[From Sections 4.3, 4.4] $\log_a x$, $\log x$, $\ln x$.
+\end{description}
+\smallskip	
+	
+	{\bfseries{Skills to review before class:} }
+\begin{multicols}{2}
+	\begin{enumerate}[topsep=0pt,itemsep=-2ex,partopsep=0ex,parsep=1ex]
+		
+\item Rewrite negative and radical exponents in terms of positive exponents and roots.
+			\item Decide whether a function does or does not have an inverse.
+			\item Calculate outputs of an inverse function if the graph/table/formula for the function are given.
+			\item Find the domain range, intercepts and asymptotes of the inverse of a one-to-one function.
+			\item Decide whether a quantity grows exponentially or linearly.
+\item Find the growth factor and the percent rate of change.
+			\item Determine (from the graph) whether the base $a$ of an exponential function $\displaystyle y=a^x$ is $>1$ or between 0 and 1. 
+			\item Find the domain, range, horizontal asymptote and intercept(s) of a transformation of an exponential function.
+		
+		%%%%%%%%%%%%%%%%%%
+	\end{enumerate}
+		
+\end{multicols}
+{\bfseries{Bring to class:} } A paper notebook with your annotations of the reading and your work on the questions listed below; a pen and/or a sharpened pencil and an eraser.
+
+{\bfseries{Laptops/Phones Policy:}}  No devices in class, unless the assignment requires it.
+
+{\bfseries{Audio-Recording:}} I will be calling people (by name) from the class roster to go over the discussion questions: to ensure everyone's privacy, please do not audio-record the class.
+
+
+\begin{center}
+
+{\large{\bfseries{Discussion Questions for Week 9} }}
+\end{center}
+\begin{enumerate}[label=\protect\circled{\arabic*}]
+	\item (From last week) 	The population of an endangered species is decreasing by 10\% per year. How many years will it take the population to drop by half?
+\item Explain (in terms of inputs and outputs) why the function $\displaystyle f(x)=a^x$ has an inverse. 
+\item Find the domain, range, intercept(s) and asymptote(s) of the inverse of $\displaystyle f(x)=a^x$. The name that we give to the inverse is $\displaystyle \log_ax$. %Play with the demo at \url{https://www.desmos.com/calculator/osibvmz8ga} to visualize the inverse function (make sure to use both $a$ values that are between 0 and 1, and $a$ values that are greater than 1.)
+\end{enumerate}
+\begin{mdframed}[style=testframe]
+	If $x$ is a positive number,  $\displaystyle \log_ax$ is the exponent of $a$ that gives $x$. In other words, $\displaystyle y=\log_a x$ means that $\displaystyle a^y=x$.
+	Properties of Logarithms:
+	\begin{multicols}{2}
+	\begin{enumerate}
+		\item $\displaystyle \log_a 1=0$;
+		\item $\displaystyle \log_a a=1$;
+		\item $\displaystyle \log_a a^x=x$;
+		\item $\displaystyle a^{\log_a x}=x$.
+	\end{enumerate}
+	\end{multicols}
+\end{mdframed}
+
+\begin{enumerate}[label=\protect\circled{\arabic*},resume]
+
+
+\item The inverse function of $\displaystyle f(x)=10^x$ is  $\displaystyle f^{-1}(x)=\log_{10}x$. Usually we will omit the subscript 10 and call it simply $\displaystyle \log x$, the common logarithm of $x$.
+Fill out the table:
+
+\begin{minipage}{\linewidth}
+	\centering
+	
+	{\setlength{\tabcolsep}{1.3em}  
+		{\renewcommand{\arraystretch}{2}%
+			\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+				\hline
+				$x$    & $-1$ & $0$ & 0.1& $\displaystyle \sqrt{10}$ & $1$ & 10&100&1000  \\ \hline
+				$\displaystyle \log x$ &      &     &   &&&&&\\ \hline
+			\end{tabular}}} \quad
+		\end{minipage}
+
+\item The inverse function of $\displaystyle f(x)=e^x$ is  $\displaystyle f^{-1}(x)=\log_{e}x$. Usually we will omit the subscript e and call it simply $\displaystyle \ln x$, the natural logarithm of $x$.
+Fill out the table:
+
+\begin{minipage}{\linewidth}
+	\centering
+	
+	{\setlength{\tabcolsep}{1.3em}  
+		{\renewcommand{\arraystretch}{2}%
+			\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+				\hline
+				$x$    & $-1$ & $0$ & $\displaystyle e^{-1}$& $\displaystyle \sqrt{e}$ & $1$ & $e$ &$\displaystyle e^2$&$\displaystyle e^3$  \\ \hline
+				$\displaystyle \ln x$ &      &     &   &&&&&\\ \hline
+			\end{tabular}}} \quad
+		\end{minipage}
+\item Evaluate the following quantities without using a calculator:
+		\begin{multicols}{3}
+			\begin{enumerate}
+				\setlength\itemsep{1em}
+				\item$\displaystyle \log_5 25$
+				\item $\displaystyle \log_6 \frac{1}{36}$
+				\item $\displaystyle \log_5 \sqrt{25}$.
+			\end{enumerate}
+			\end{multicols}	
+			\item Solve each equation  without using a calculator:
+			\begin{multicols}{3}
+				\begin{enumerate}
+					\setlength\itemsep{1em}
+					\item$\displaystyle \log_2 x=-3$
+					\item $\displaystyle 5^x=14$
+					\item $\displaystyle 3(1.04)^{3x}=8$
+					\item $\displaystyle 100-100\left (\frac{1}{4}\right )^x=70$
+					\item $\displaystyle 10e^{-0.03x}=4$
+				\end{enumerate}
+			\end{multicols}
+	\item True or false? Do not use a calculator for this problem, and show evidence of Your thinking.
+	\begin{multicols}{2}
+		\begin{enumerate}
+			\setlength\itemsep{1em}
+			\item $\displaystyle 10^{0.928}$ is between 1 and 10; 
+			\item $\displaystyle 10^{3.334}$ is between 500 and 1000;
+			\item $\displaystyle 10^{-5.2}$ is between -100,000 and -1,000,000;
+			\item $\displaystyle 10^{-2.67}$ is between 0.001 and 0.01;
+			\item $\displaystyle \log \pi$ is between 3 and 4;
+			\item $\displaystyle \log 96$ is between 3 and 4;
+			\item $\displaystyle \log 1,600,000$ is between 16 and 17;
+			\item $\displaystyle \log \left ( 8\cdot 10^9\right ) $ is between 9 and 10;
+			\item $\displaystyle \log \left ( \frac{1}{4}\right ) $ is between -1 and 0.
+			%\item If the half life of a substance is $5$ hours and we start with one gram of the substance, then there will be $0.25$ grams of the substance after 10 hours.
+			%\item A bacteria colony has size given by $\displaystyle m(x)=500e^{0.4x}$, where $x$ is measured in hours. Then the relative growth rate is 40\%.
+		\end{enumerate}
+	\end{multicols}
+\end{enumerate}
+\begin{mdframed}[style=testframe]
+	Any two logarithms are related by the change of base formula: $\displaystyle \log_b(x)=\frac{\log_a x}{\log_a b}$
+\end{mdframed}
+
+\begin{enumerate}[label=\protect\circled{\arabic*},resume]
+	\item Rewrite $\displaystyle \log_2 10$ and $\displaystyle \log_5 100$ using the common logarithm. Then, redo the problem	using the natural logarithm.	
+	\item Find the domain of these functions:
+		\begin{multicols}{3}
+	\begin{enumerate}
+		\item $\displaystyle y=\log\left (x^2\right )$
+		\item $\displaystyle y=\left (\log x\right )^2$
+		\item $\displaystyle y=\ln (x^2-1)$.
+
+	\end{enumerate}	
+\end{multicols}
+\item Use function transformations to graph each of the functions listed below. Indicate the coordinates of one point on each graph, state the domain, range, intercept(s) (if any) and equation of any asymptote(s).
+
+		\begin{multicols}{4}
+\begin{enumerate}
+	\item $\displaystyle y=\log_2 (x-3)$
+	\item $\displaystyle y=2+ 2\log_2 x$
+	\item  $\displaystyle y=\log (-x)$
+	\item  $\displaystyle y=\log (10x)$
+%	\item $\displaystyle y=2-\log_2(2x)$.
+	
+
+\end{enumerate}
+\end{multicols}
+
+
+
+\end{enumerate}
+\begin{mdframed}[style=testframe]
+	Laws of Logarithms:
+	%\begin{multicols}{3}
+		\begin{enumerate}
+			\item $\displaystyle \log_a (xy)=\log_a x+\log _a y$;
+			\item $\displaystyle \log_a \frac{x}{y}=\log_a x-\log _a y$;
+			\item $\displaystyle \log_a x^c=c\log_a x$.
+		\end{enumerate}
+	%\end{multicols}
+\end{mdframed}
+
+\begin{enumerate}[label=\protect\circled{\arabic*},resume]
+
+\item Simplify using logarithm properties to a single logarithm:
+	\begin{multicols}{3}
+		\begin{enumerate}
+			\item $\displaystyle \log_3 28-\log_3 7$
+			\item $\displaystyle \ln (4x^2)+\ln(3x^3)$
+			\item $\displaystyle 3\log x+2\log (x^2)$
+			
+		\end{enumerate}
+		\end{multicols}	
+\item Expand the expression $\displaystyle \log \left ( \frac{x^{15}y^{13}}{z^{19}}\right )$ using the properties of logarithms.
+\item If \$1000 is invested in an account paying an interest of 0.5\% compounded monthly, how long will it take for the account to grow to \$1100?
+\end{enumerate}
+
+
+ \begin{mdframed}[style=exampledefault,linecolor=blue,linewidth=4pt,frametitle={Looking Ahead to the second half of the course...}]
+
+{\underline{Advice on how to excel in precalculus:} }
+\begin{enumerate}[label= {  \arabic*:},labelindent=2em, style = standard,leftmargin=4pc, labelsep=*, noitemsep]
+ 		\item  Always go through the discussion questions slowly again yourself after each class, to make sure you fully understand.
+Check the  work you did on the questions before class against the answers provided in class to make sure you didn't overlook anything.
+\item Always read the sections we will cover{\bf{ before class}}.
+\item Always attempt the discussion questionsr{\bf{ before class}}.
+\item Give yourself sufficient time to do the homework: start early and don't just try to guess the answers. Work through each problem and take notes on how you attempt to solve the problem, why your attempt works or where you got stuck, and why.
+\end{enumerate}
+ 	\end{mdframed}
+
+
+\end{document} 
+              

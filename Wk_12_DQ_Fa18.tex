@@ -1,0 +1,556 @@
+\documentclass[12pt,dvipsnames]{article}
+\usepackage[margin=0.4in,footskip=0.1in]{geometry}
+\usepackage{etex}
+\usepackage{amssymb,amsmath,multicol} %<-- InWorksheetExam1 i also have fancyhdr,
+\usepackage{hyperref}
+\usepackage[metapost]{mfpic}
+\usepackage[pdftex]{graphicx}
+\usepackage{csquotes}
+\usepackage{pst-plot}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.9}
+
+\usepackage{tikz}
+\usepackage{tkz-2d}
+\usepackage{tkz-base}
+\usetikzlibrary{calc}
+\usepackage{color}
+\usepackage[inline]{enumitem}
+\usepackage{refcount}%<-- non in WorksheetExam1
+
+%\usepackage[linewidth=1pt]{mdframed}
+
+
+\usepackage[framemethod=TikZ]{mdframed}
+\newcommand{\mdfLABEL}[1]{\node[text width=2em,align=right,anchor=north east,%
+	outer sep=0pt,inner sep=0pt] at ($ (O|-P)
+	-(\the\mdflength{innerleftmargin},0)
+	-0.5*(\the\mdflength{middlelinewidth},0)
+	- (0,\the\mdflength{innertopmargin})
+	+ (0,0.5pt)
+	$) {$\Box$};} %in the original code, $F$ is replaced with #1
+
+\mdfdefinestyle{testframe}{topline=false,rightline=false,bottomline=false,%
+	innerleftmargin=1em,linecolor=white,rightmargin=2em,skipbelow=1em,%
+	tikzsetting={draw=black,line width=.5pt,dashed,dash pattern= on 1pt off 3pt},%
+	firstextra={\mdfLABEL{(i)}},%
+	singleextra={\mdfLABEL{(i)}},%
+	secondextra={\mdfLABEL{$\phantom{.}$}},%
+	middleextra={\mdfLABEL{$\phantom{.}$}},%
+}
+
+
+
+\usepackage{caption}
+\usetikzlibrary{calc,fit,intersections,shapes,calc}
+\usetikzlibrary{backgrounds}
+\usepackage{systeme}
+\usepackage{multicol}
+
+\newcolumntype{?}{!{\vrule width 1pt}}
+
+
+%%These three lines are for the typewriter font. Comment them out if I don't want the font.
+%%%%%%\renewcommand*\ttdefault{lcmtt}
+%%%%%%\renewcommand*\familydefault{\ttdefault} %% Only if the base font of the document is to be typewriter style
+%%%%%%\usepackage[T1]{fontenc}
+%%%%%%
+
+\usepackage{tabularx, booktabs}
+
+
+\newenvironment{myitemize}
+{ \begin{itemize}
+		\setlength{\itemsep}{10pt}
+		\setlength{\parskip}{10pt}
+		\setlength{\parsep}{10pt}     }
+	{ \end{itemize}   
+	
+} 
+
+\usepackage{setspace}
+
+\font\maxi=cminch scaled 100
+\usepackage{tgadventor}
+%\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+\usepackage[T1]{fontenc}
+\newcommand*{\myfont}{\fontfamily{\sfdefault}\selectfont}
+\usepackage{pacioli}
+\usepackage[OT1]{fontenc}
+\usepackage{systeme}
+%\usepackage{ulem}
+
+%\usepackage{spalign}
+
+
+%\usepackage{AlegreyaSans} %% Option 'black' gives heavier bold face
+%% The 'sfdefault' option to make the base font sans serif
+%\renewcommand*\oldstylenums[1]{{\AlegreyaSansOsF #1}}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{%
+		\node[shape=circle,fill=blue!20,draw,inner sep=2pt] (char) {#1};}}
+
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\pagestyle{fancy} 
+
+\rfoot{{\small{Page \thepage\ of \pageref{LastPage}}}}
+\cfoot{}
+\renewcommand{\baselinestretch}{1.50}\normalsize
+
+
+
+
+\makeatletter
+\newenvironment{enumeratecount}[1]
+{\def\thisenumeratecountlabel{#1}\enumerate}
+{\edef\@currentlabel{\number\value{\@enumctr}}%
+	\label{\thisenumeratecountlabel}\endenumerate}
+\makeatother
+
+\usepackage{refcount}
+\newcommand{\addphrase}[3]{% #1 = label, #2 = text if number >1, #3 = text if number =1
+	\ifnum\getrefnumber{#1}>1
+	#2%
+	\else
+	#3%
+	\fi}
+
+
+\makeatletter
+% This command ignores the optional argument for itemize and enumerate lists
+\newcommand{\inlineitem}[1][]{%
+	\ifnum\enit@type=\tw@
+	{\descriptionlabel{#1}}
+	\hspace{\labelsep}%
+	\else
+	\ifnum\enit@type=\z@
+	\refstepcounter{\@listctr}\fi
+	\quad\@itemlabel\hspace{\labelsep}%
+	\fi}
+\makeatother
+
+\newcommand*\circledA[1]{\tikz[baseline=(char.base)]{%
+		\node[shape=circle,fill=green!20,draw,inner sep=2pt] (char) {#1};}}
+
+\opengraphsfile{Wk_12_DQ_Fa18}
+
+\begin{document}
+\thispagestyle{empty}
+
+%	\thispagestyle{empty}
+	\begin{center}
+		{\large{Week 12}}
+	\end{center}
+
+{\bfseries{Textbook sections to read and annotate before class:}} 5.3, 5.4 (tangent and cotangent only).
+%\begin{enumerate*}[label=(\arabic*)]
+
+\smallskip
+
+	{\bfseries{Definitions to memorize before class:}} 
+
+\begin{description}[topsep=0pt,itemsep=-2ex,partopsep=0ex,parsep=1ex]
+\item[From Weeks 1-10] Linear equations and inequalities, feasible region and objective function, linear programming algorithm,  function, domain, range, interval form, transformation, operations on functions, one-to-one function, inverse, polynomial, degree, leading coefficient, end behavior, zero, multiplicity, $x\to \infty$, $x\to -\infty$, rational function, arrow notation from pg 296 ($x\to a^{-}, x\to a^{+}, x\to \infty, x\to -\infty$), vertical asymptote, horizontal asymptote, slant asymptote, exponential function, graph of an exponential function, compound interest, annual percentage yield, $e$, natural exponential function, continuous compounding, $\log_a x$, $\log x$, $\ln x$, doubling time, half life, relative growth rate, unit circle, terminal point, reference point, periodic function, sine, cosine, amplitude, period.
+\item[From Week 12] tangent, cotangent.
+\end{description}
+\smallskip	
+	
+	%%{\bfseries{Skills to review before class:} }
+%%\begin{multicols}{2}
+	%\begin{enumerate}[topsep=0pt,itemsep=-2ex,partopsep=0ex,parsep=1ex]
+		
+%%	\begin{enumerate}[label= {  \arabic*:},labelindent=1em, style = standard,leftmargin=3pc, labelsep=*, itemsep=-2ex,partopsep=0ex,parsep=1ex]
+%%		\item Rewrite a log identity or equation in exponential form.
+%%		\item Rewrite a exponential identity or equation in log form.
+%%		\item Find the domain, range,  vertical asymptote and intercept(s) of a transformation of a logarithmic function.
+%%		\item Expand or condense an expression using the laws of logarithms.
+		
+		%%%%%%%%%%%%%%%%%%
+%%	\end{enumerate}
+		
+%\end{multicols}
+{\bfseries{Bring to class:} } A paper notebook with your annotations of the reading and your work on the questions listed below; a pen and/or a sharpened pencil and an eraser.
+
+{\bfseries{Laptops/Phones Policy:}}  No devices in class, unless the assignment requires it.
+
+{\bfseries{Audio-Recording:}} I will be calling people (by name) from the class roster to go over the discussion questions: to ensure everyone's privacy, please do not audio-record the class.
+
+
+\begin{center}
+
+{\large{\bfseries{Discussion Questions for Week 12} }}
+\end{center}
+	%\begin{enumerate}[label=\protect\circled{\arabic*}]
+		\renewcommand{\labelenumi}{(\arabic{enumi})}
+		%%%%%%%%%%%%%%%%%%%
+		%%%%% https://www.illustrativemathematics.org/HSF-LE.A
+		%%%%% GREAT REFERENCE
+		%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{enumerate}[label= \protect\circled{\arabic*}]
+
+	\item \label{vertical}  Part of the graph of a periodic function $y=T(x)$ with domain all real numbers is shown below. The maximum and minimum values of $T(x)$ are shown. 
+	
+  
+		\begin{center}
+			
+			
+			
+			\begin{mfpic}[20]{-2}{3}{-2}{3}
+				
+				
+				\polyline{(-2,1), (-1,-2)} 
+				
+				\polyline{(-1,-2), (0,0)}
+				
+				\polyline{(0,0),(1,-2)}
+				
+				\polyline{(1,-2),(2,1)}
+				
+				\polyline{(2,1),(3,-2)}
+				
+				%\point[5pt]{(0,2),  (2,2), (2,1),(5,3)}
+				%\circle{(5,1),0.15}
+				%\circle{(2,2),0.15}
+				\axes
+				
+				\xmarks{-2,-1,,1,2,3}
+				
+				\ymarks{-2,-1,,1,2,3}
+				
+				\tlpointsep{4pt}
+				
+				\axislabels {x}{{\tiny $-2$} -2, {\tiny $-1$} -1, {\tiny $0$} 0, {\tiny $1$} 1, {\tiny $2$} 2}
+				
+				\axislabels {y}{{\tiny $1$} 1,{\tiny $2$} 2, {\tiny $3$} 3,  {\tiny $-1$} -1, {\tiny $-2$} -2}
+				\tlabels{[tc](\xmax, 0){$x$} [cr](0, \ymax){$T(x)$}}
+				% Grid
+				%\drawcolor[gray]{0.25}
+				%\gridlines{1, 1}
+				\drawcolor[gray]{0.75} 
+				\grid{1,1}
+				
+				
+				
+				
+			\end{mfpic}
+			
+		\end{center}
+\begin{enumerate}
+\item Which of these numbers can be the period of the function $T$?
+		 \begin{multicols}{3}
+		 \begin{enumerate}[label=\fbox{\arabic*}]
+		 \item 1
+		 \item 2
+		 \item 4
+		 \item 5
+		 \item 6
+		 \item None of these.
+		 \end{enumerate}
+		 \end{multicols}	
+
+	\item Write the equation of the midline of $T$, and find the amplitude of the function.
+\end{enumerate}	
+
+\item True or False? Show evidence of Your thinking.
+
+If $f(x)$ is a periodic function and its period is 5, then $f(1)=f(11)$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{enumerate}	
+
+\begin{mdframed}[style=testframe]
+	For the functions $\displaystyle y=A\sin(B(t-h))+k$ and $\displaystyle y=A\cos(B(t-h))+k$:
+	\begin{itemize}
+		\item[$\circ$] $|A|$ is the amplitude; 
+		\item[$\circ$] $h$ is the horizontal shift;
+		\item[$\circ$] $|B|$ is the frequency, that is, it is the number of cycles completes in $0\leq t \leq 2\pi$;	
+		\item[$\circ$] $\displaystyle \frac{2\pi}{|B|}$ is 	the period;
+		\item[$\circ$] $y=k$ is the midline.
+	\end{itemize}
+	Any function with equation $\displaystyle y=A\sin(B(t-h))+k$ or $\displaystyle y=A\cos(B(t-h))+k$ is called a {\bfseries{sinusoidal function}}.
+\end{mdframed}
+
+\begin{enumerate}[label=\protect\circled{\arabic*},resume]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\item True or false? 
+\begin{enumerate}
+	\item The amplitude of the function $\displaystyle y=-2\cos x+3$ is $-2$.
+	\item The maximum value of the function $\displaystyle y=25+10\cos(\pi x)$ is 25.
+	\item The minimum value of the function $\displaystyle y=25+10\cos(\pi x)$ is 15.
+\end{enumerate}
+
+	\item Graph one period of the function $\displaystyle f(x)=3\sin \left (\frac{\pi x}{4}-\frac{\pi}{4}\right )$.
+	
+	\item A sinusoidal function $f(x)$ has the following properties:
+	\begin{multicols}{2}
+		\begin{enumerate}
+			\item The amplitude is 3 units;
+			\item The period is 6 units;
+			\item The equation of the midline is $y=-2$;
+			\item The point $(1,1)$ is a maximum.
+		\end{enumerate}
+	\end{multicols}
+	Draw the graph of one period of the function and write an equation for $f(x)$.
+
+\item The height (in cm) of the tip of the hour hand on a vertical clock face is a function, $f(x)$, of the time $x$ (in hours). The hour hand is 10 cm long, and the middle of the clock face is placed at a height of 150 cm from the ground. Find the amplitude, midline and period of the function $f(x)$. Then, draw the graph of $f$ over one period and write the equation for $f$. 	
+
+	\item  \label{ferris} A Ferris wheel with 59 capsules has a diameter of 110 meters and its lowest point (at the 6 o'clock position) is 5 meters above the ground. One full rotation of the wheel takes 24 minutes, and the wheel rotates counterclockwise at a constant speed. The capsules are labeled from 1 to 59. We start observing when capsule 1 is at the lowest point on the wheel. If $H(t)$ is the height of capsule 1 $t$ minutes after we start the observation, 
+	\begin{enumerate}
+		\item \label{three3} Write an equation for $H(t)$ using the sine function $\displaystyle H(t)=A\sin(B(t-h))+k$.
+		\item \label{four4} Write an equation for $H(t)$ using the cos function $\displaystyle H(t)=A\cos(B(t-h))+k$. 
+		\item Capsule 15 is at the 3 o'clock position when we start the observation. If $F(t)$ is the height of capsule 15 from the ground $t$ minutes after we start observing, redo questions \ref{three3} and \ref{four4} for $F(t)$.
+	\end{enumerate}
+
+	
+
+	
+	\item Part of the graphs of four sinusoidal functions are shown below. For each function, write an equation that represents the graph in the form
+$\displaystyle y=A\sin(B(t-h))+k$ or $\displaystyle y=A\cos(B(t-h))+k$. 
+	
+	\begin{multicols}{2}
+	\begin{enumerate}
+		\item Function $f(x)$:
+		
+		
+		\begin{mfpic}[35][50]{0}{5.25}{-1.15}{1.5}
+			%\point[3pt]{(1.5708,0), (2.3562,1), (3.1415,0), (3.927,-1), (4.7124,0)}
+			\axes
+			\tlabel[cc](5.25,-0.25){$x$}
+			\tlabel[cc](0.25,1.5){$y$}
+			\xmarks{1.5708, 2.3562, 3.1415, 3.927, 4.7124}
+			\ymarks{-1,1}
+			\tlpointsep{4pt}
+			\axislabels {x}{{$\frac{\pi}{4}$} 0.7853, {$\frac{\pi}{2}$} 1.5708, {$\frac{3\pi}{4}$} 2.3562, {$\pi$} 3.1415, {$\frac{5\pi}{4}$} 3.927, {$\frac{3\pi}{2}$} 4.7124}
+			\axislabels {y}{{$-1$} -1, {$1$} 1}
+			\function{0, 3.1415, 0.1}{sin(4*x - 3.1415)} %1.5708
+		\end{mfpic}
+		\item Function $g(x)$:
+		
+		
+		
+		\begin{mfpic}[35][50]{0}{5.25}{-1.15}{1.5}
+			%\point[3pt]{(1.5708,0), (2.3562,1), (3.1415,0), (3.927,-1), (4.7124,0)}
+			\axes
+			\tlabel[cc](5.25,-0.25){$x$}
+			\tlabel[cc](0.25,1.5){$y$}
+			\xmarks{1.5708, 2.3562, 3.1415, 3.927, 4.7124}
+			\ymarks{-1,1}
+			\tlpointsep{4pt}
+			\axislabels {x}{{$\frac{1}{4}$} 0.7853,{$\frac{1}{2}$} 1.5708, {$\frac{3}{4}$} 2.3562, {$1$} 3.1415, {$\frac{5}{4}$} 3.927, {$\frac{3}{2}$} 4.7124}
+			\axislabels {y}{{$-1$} -1, {$1$} 1}
+			\function{0, 3.1415, 0.1}{sin(4*x - 3.1415)} %1.5708
+		\end{mfpic}
+		
+		\item Function $h(x)$:
+		
+	%	\begin{tikzpicture}[yscale=2]
+	%	\tkzInit[xmin=0,xmax=2,ymin=-1.25,ymax=1.25]
+	%	\tkzY[gradsize=\scriptstyle]
+	%	\tkzX %[trig=2]
+	%	\draw[color=blue,samples at={0,0.1,...,2.1
+	%	}] plot (\x,{cos(3.14*\x r)})%
+	%	node[above] {$ $};
+	%	%\draw[color=black,samples at={-6.28,-6.24,...,6.28}] plot (\x,{cos(\x r)})%
+	%	node[above] {$ $};
+	%	\end{tikzpicture}
+		
+	%	\item Graph of the function $F(x)$.
+		
+		
+	%	\begin{tikzpicture}
+	%	\begin{axis}[
+		%minor tick num=3,
+	%	axis y line=center,
+	%	axis x line=middle,
+		%enlarge x limits=0.15,
+	%	enlarge y limits=0.15,
+	%	every axis y label/.style={at={(current axis.above origin)},anchor=north east},
+	%	xlabel=$x$,ylabel=$y$,xtick={0,1,2,3,4,5,6}, xticklabels={0,1,2,3,4,5,6},ytick={-3,-2,-1,0,1},yticklabels={-3,-2,-1,0,1},grid=both
+	%	]
+	%	\addplot[smooth,blue,mark=none,
+	%	domain=0:6.28,samples=40] 
+	%	{-1-2*cos(deg(x*pi/2))};
+	%	\end{axis}
+	%	\end{tikzpicture}
+		
+			
+			\begin{tikzpicture}
+			\begin{axis}[
+			%minor tick num=3,
+			axis y line=center,
+			axis x line=middle,
+			%enlarge x limits=0.15,
+			enlarge y limits=0.15,
+			every axis y label/.style={at={(current axis.above origin)},anchor=north east},
+			xlabel=$x$,ylabel=$y$,xtick={-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6}, xticklabels={-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6},ytick={-3,-2,-1,0,1},yticklabels={-3,-2,-1,0,1},grid=both, minor tick num=1
+			]
+			\addplot[smooth,blue,mark=none,
+			domain=-6:6,samples=40] 
+			{cos(deg(x*pi/5+2*pi/5))};
+			\end{axis}
+			\end{tikzpicture}
+			
+\item Function $r(x)$:
+
+			\begin{tikzpicture}
+			\begin{axis}[
+			%minor tick num=3,
+			axis y line=center,
+			axis x line=middle,
+			%enlarge x limits=0.15,
+			enlarge y limits=0.15,
+			every axis y label/.style={at={(current axis.above origin)},anchor=north east},
+			xlabel=$x$,ylabel=$y$,xtick={-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6}, xticklabels={-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6},ytick={-3,-2,-1,0,1,2},yticklabels={-3,-2,-1,0,1,2},grid=both, minor tick num=1
+			]
+			\addplot[smooth,blue,mark=none,
+			domain=-4:4,samples=40] 
+			{-2*cos(deg(2*x*pi/3))};
+			\end{axis}
+			\end{tikzpicture}			
+		
+	\end{enumerate}
+	\end{multicols}
+	
+	\item The following formulas give the sizes of various populations as functions of time $t$, in years, since the year 2011. Describe each population size in words: Your explanation should include: the population size in 2011, any maxima and/or minima, and the population trend as $t$ gets larger and larger.
+	
+		\begin{multicols}{2}
+			\begin{enumerate}
+				\item $\displaystyle P(t)=1500+200t$;
+				\item $\displaystyle P(t)=30000-50t$;
+				\item $\displaystyle P(t)=15000(1.03^t)$;
+				\item $\displaystyle P(t)=100,000(0.97^t)$;
+				\item $\displaystyle P(t)=2000\sin \left ( \frac{2\pi t}{7}\right )+1000$.
+			\end{enumerate}
+		\end{multicols}
+\item A population oscillates 150 units above and below an average of 720 during the year. The smallest size of the population occurs in January.  Assuming that the population $P$, as a function of the time $t$ (months since January) is a sinusoidal function, write a formula for this function. 
+\end{enumerate}	
+
+\begin{mdframed}[style=testframe]
+
+	\begin{itemize}
+		\item[$\circ$] The function $\displaystyle y=\tan x$ (tangent of $x$) is defined as $\displaystyle \tan x = \frac{\sin x}{\cos x}$; 
+		\item[$\circ$] The function $\displaystyle y=\cot x$ (cotangent of $x$) is defined as $\displaystyle \cot x = \frac{\cos x}{\sin x}$;
+		\item[$\circ$] Tangent and cotangent have period $\displaystyle \pi$.	
+		\item[$\circ$] The tangent function has vertical asymptotes at $\displaystyle x=\frac{\pi}{2}+k\pi$, where $k$ is any integer;
+		\item[$\circ$] The cotangent function has vertical asymptotes at $\displaystyle x=\pi+k\pi$, where $k$ is any integer.
+	\end{itemize}
+
+\end{mdframed}
+
+\begin{enumerate}[label=\protect\circled{\arabic*},resume]	
+	\item Find the domain and range of $\displaystyle \tan x$.
+	\item Find the domain and range of $\displaystyle \cot x$.
+	\item If $\displaystyle \cos x=\frac{1}{2}$, what is $\tan x$?
+	\end{enumerate}
+	
+	\par\medskip\hrule\medskip
+
+
+
+%\end{enumerate}
+\newpage
+
+\setlength\fboxrule{2pt}\setlength\fboxsep{2mm}
+\fbox{This chart will be provided in the quizzes and in the final exam.} 
+
+\par\medskip\hrule\medskip
+
+
+\begin{tikzpicture}[scale=5.3,cap=round,>=latex]
+% draw the coordinates
+\draw[->] (-1.5cm,0cm) -- (1.5cm,0cm) node[right,fill=white] {$x$};
+\draw[->] (0cm,-1.5cm) -- (0cm,1.5cm) node[above,fill=white] {$y$};
+
+% draw the unit circle
+\draw[thick] (0cm,0cm) circle(1cm);
+
+\foreach \x in {0,30,...,360} {
+	% lines from center to point
+	\draw[gray] (0cm,0cm) -- (\x:1cm);
+	% dots at each point
+	\filldraw[black] (\x:1cm) circle(0.4pt);
+	% draw each angle in degrees
+	%\draw (\x:0.6cm) node[fill=white] {$\x^\circ$};
+}
+
+\foreach \x in {0,45,...,360} {
+	% lines from center to point
+	\draw[gray] (0cm,0cm) -- (\x:1cm);
+	% dots at each point
+	\filldraw[black] (\x:1cm) circle(0.4pt);
+	% draw each angle in degrees
+	%\draw (\x:0.6cm) node[fill=white] {$\x^\circ$};
+}
+% draw each angle in radians
+\foreach \x/\xtext in {
+	30/\frac{\pi}{6},
+	45/\frac{\pi}{4},
+	60/\frac{\pi}{3},
+	90/\frac{\pi}{2},
+	120/\frac{2\pi}{3},
+	135/\frac{3\pi}{4},
+	150/\frac{5\pi}{6},
+	180/\pi,
+	210/\frac{7\pi}{6},
+	225/\frac{5\pi}{4},
+	240/\frac{4\pi}{3},
+	270/\frac{3\pi}{2},
+	300/\frac{5\pi}{3},
+	315/\frac{7\pi}{4},
+	330/\frac{11\pi}{6},
+	360/2\pi}
+\draw (\x:0.85cm) node[fill=white] {$\xtext$};
+
+\foreach \x/\xtext/\y in {
+	% the coordinates for the first quadrant
+	30/\frac{\sqrt{3}}{2}/\frac{1}{2},
+	45/\frac{\sqrt{2}}{2}/\frac{\sqrt{2}}{2},
+	60/\frac{1}{2}/\frac{\sqrt{3}}{2},
+	% the coordinates for the second quadrant
+	150/-\frac{\sqrt{3}}{2}/\frac{1}{2},
+	135/-\frac{\sqrt{2}}{2}/\frac{\sqrt{2}}{2},
+	120/-\frac{1}{2}/\frac{\sqrt{3}}{2},
+	% the coordinates for the third quadrant
+	210/-\frac{\sqrt{3}}{2}/-\frac{1}{2},
+	225/-\frac{\sqrt{2}}{2}/-\frac{\sqrt{2}}{2},
+	240/-\frac{1}{2}/-\frac{\sqrt{3}}{2},
+	% the coordinates for the fourth quadrant
+	330/\frac{\sqrt{3}}{2}/-\frac{1}{2},
+	315/\frac{\sqrt{2}}{2}/-\frac{\sqrt{2}}{2},
+	300/\frac{1}{2}/-\frac{\sqrt{3}}{2}}
+\draw (\x:1.25cm) node[fill=white] {$\left(\xtext,\y\right)$};
+
+% draw the horizontal and vertical coordinates
+% the placement is better this way
+\draw (-1.25cm,0cm) node[above=1pt] {$(-1,0)$}
+(1.25cm,0cm)  node[above=1pt] {$(1,0)$}
+(0cm,-1.25cm) node[fill=white] {$(0,-1)$}
+(0cm,1.25cm)  node[fill=white] {$(0,1)$};
+\end{tikzpicture}
+
+
+
+
+\begin{mdframed}[style=exampledefault,linecolor=blue,linewidth=4pt,frametitle={Looking ahead to the last few weeks of the course...}]
+	\begin{footnotesize}
+	%{\underline{Advice on how to excel in precalculus:} }
+	\begin{enumerate}[label= {  \arabic*:},labelindent=2em, style = standard,leftmargin=4pc, labelsep=*, noitemsep]
+		\item Don't forget to complete and submit the weekly homework and the essay.
+		\item Mark the date, time and location of the final exam in Your calendar.
+		\item Familiarize Yourself with the assessment plan for Precalculus. You can find the assessment plan in the syllabus (posted on NYU Classes).
+		\item Make every effort to {\textcolor{red}{{\bf{participate}}}} in class. Participation is part of our assessment plan, and it helps You get the most out of each class meeting. 
+		\item Please note that if You don't read the weekly section ahead of time and attempt the discussion questions, it will be very difficult for You to participate meaningfully and receive top marks for participation.
+		
+		
+	\end{enumerate}
+	\end{footnotesize}
+\end{mdframed}
+
+\end{document} 
+              

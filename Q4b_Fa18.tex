@@ -1,0 +1,161 @@
+\documentclass[11pt,answers]{exam}
+
+\usepackage{etex}
+\usepackage{amssymb,amsmath,multicol} %<-- InWorksheetExam1 i also have fancyhdr,
+
+\usepackage[metapost]{mfpic}
+\usepackage[pdftex]{graphicx}
+\usepackage{tabu}
+
+\usepackage{pst-plot}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.9}
+
+\usepackage{tikz}
+\usepackage{tkz-2d}
+\usepackage{tkz-base}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows}
+
+\usepackage{systeme}
+
+\usepackage[inline]{enumitem}
+\usepackage{refcount}%<-- non in WorksheetExam1
+
+\usepackage{pstricks-add,pst-eucl}
+\usepackage{systeme}
+\usepackage{setspace}
+\usepackage{multicol}
+
+
+\usepackage[inline]{enumitem}   
+\makeatletter
+% This command ignores the optional argument for itemize and enumerate lists
+\newcommand{\inlineitem}[1][]{%
+\ifnum\enit@type=\tw@
+    {\descriptionlabel{#1}}
+  \hspace{\labelsep}%
+\else
+  \ifnum\enit@type=\z@
+       \refstepcounter{\@listctr}\fi
+    \quad\@itemlabel\hspace{\labelsep}%
+\fi}
+\makeatother
+
+
+\def\f{x+1} \def\g{-x/3+2}  \def\h{-x+3}
+
+\newcommand{\vasymptote}[2][]{
+    \draw [densely dashed,#1] ({rel axis cs:0,0} -| {axis cs:#2,0}) -- ({rel axis cs:0,1} -| {axis cs:#2,0});
+}
+
+\addpoints
+%\printanswers
+\noprintanswers
+
+\opengraphsfile{Q4b_Fa18}
+
+\begin{document}
+\extrawidth{-0.3in}
+\pagestyle{headandfoot}
+
+\setlength{\hoffset}{-.25in}
+
+\extraheadheight{-.3in}
+\runningheadrule
+\firstpageheader{\bfseries {Precalculus}}{ \bfseries {Quiz 4 }}{\bfseries {10/2/18}} 
+
+\begin{center}
+	This quiz has \numquestions\ questions, for a total of \numpoints\
+	points and \numbonuspoints\ bonus points.
+\end{center}
+
+
+\firstpagefooter{} %%&&CHANGED
+                {}
+                {%Points earned: \hbox to 0.5in{\hrulefill}
+                % out of  \pointsonpage{\thepage} points
+                }
+                 
+						
+
+\vspace*{0.1cm}
+\hbox to \textwidth { \scshape {Name:} \enspace\hrulefill}
+\vspace{0.1cm}
+
+
+
+
+\pointpoints{point}{points}
+
+\begin{questions}
+
+
+\addpoints
+
+\question A tank holds 100 gallons of water, which drains from a leak at the bottom, causing the tank to drain in 40 minutes. The volume of water remaining in the tank after $t$ minutes is $\displaystyle V=f(t)=100\left (1-\frac{t}{40}\right )^2$.
+\begin{parts}
+	\part[2]  Find $\displaystyle f^{-1}(0)$. Show your work step by step.
+	\fillwithdottedlines{2cm} 
+	\part[1] What does $\displaystyle f^{-1}(19)$ represent? 
+	\begin{choices}
+		\choice $\displaystyle f^{-1}(19)$ represents the rate at which the tank is leaking when 19 gallons have drained from the tank.
+
+		\choice $\displaystyle f^{-1}(19)$ represents the time that remains for the tank to be emptied when 19 gallons have drained from the tank.
+		\choice $\displaystyle f^{-1}(19)$ represents the time that has elapsed when there are 19 gallons left in the tank. 
+		\choice $\displaystyle f^{-1}(19)$ represents the water remaining in the tank 19 minutes after the tank started to leak.
+				\choice $\displaystyle f^{-1}(19)$ represents the volume of water that has leaked out of the tank after 19 minutes.
+	\end{choices}
+\end{parts} 
+
+\question Let $\displaystyle f(x)=\frac{1}{x}$ and $\displaystyle g(x)=\frac{1}{2x}$.
+
+\begin{parts}
+	\part[2] Write the domain of $\displaystyle \frac{f}{g}$ in interval form. Show Your work step-by-step.
+	\fillwithdottedlines{1cm}
+		\part[2] Write the domain of $\displaystyle \frac{g}{f}$  in interval form. Show Your work step-by-step.
+		\fillwithdottedlines{1cm}
+	
+	\end{parts}
+\bonusquestion[1] The function shown below is not one-to-one.
+
+\begin{minipage}{0.5\linewidth}
+\begin{mfpic}[20]{-1}{6}{-1}{4}
+	
+	%\polyline{(0,-2), (4,1), (4,2), (5,3)}
+	
+	\polyline{(0,1), (2,3)} 
+	
+	\polyline{(2,3), (4,2)}
+	
+	\point[5pt]{(0,1), (4,2)}
+	%\tlabel[cc](4,2.5){\scriptsize $(4,2)$}
+	\axes
+	
+	\xmarks{1,2,3,4}
+	
+	\ymarks{-1,1,2,3,4,}
+	
+	\tlpointsep{4pt}
+	
+	\axislabels {x}{{\tiny $1$} 1, {\tiny $2$} 2, {\tiny $3$} 3, {\tiny $4$} 4, {\tiny $5$} 5}
+	
+	\axislabels {y}{{\tiny $1$} 1,{\tiny $2$} 2, {\tiny $3$} 3,   {\tiny $-1$} -1}
+	
+	% Grid
+	%\drawcolor[gray]{0.005}
+	%\gridlines{1, 1}
+	\drawcolor[gray]{0.95} 
+	\grid{1,1}
+	
+\end{mfpic}
+
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+	Restrict its domain so that the resulting function is one-to-one. Write your answer in interval form. (Note: there are many possible correct answers).
+	\fillwithdottedlines{2cm}
+\end{minipage}
+
+\end{questions}
+
+\end{document}                 

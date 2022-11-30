@@ -1,0 +1,434 @@
+\documentclass[12pt,dvipsnames]{article}
+\usepackage[margin=0.4in,footskip=0.1in]{geometry}
+\usepackage{etex}
+\usepackage{amssymb,amsmath,multicol} %<-- InWorksheetExam1 i also have fancyhdr,
+\usepackage{hyperref}
+\usepackage[metapost]{mfpic}
+\usepackage[pdftex]{graphicx}
+\usepackage{csquotes}
+\usepackage{pst-plot}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.9}
+
+\usepackage{tikz}
+\usepackage{tkz-2d}
+\usepackage{tkz-base}
+\usetikzlibrary{calc}
+\usepackage{color}
+\usepackage[inline]{enumitem}
+\usepackage{refcount}%<-- non in WorksheetExam1
+
+%\usepackage[linewidth=1pt]{mdframed}
+
+
+\usepackage[framemethod=TikZ]{mdframed}
+\newcommand{\mdfLABEL}[1]{\node[text width=2em,align=right,anchor=north east,%
+	outer sep=0pt,inner sep=0pt] at ($ (O|-P)
+	-(\the\mdflength{innerleftmargin},0)
+	-0.5*(\the\mdflength{middlelinewidth},0)
+	- (0,\the\mdflength{innertopmargin})
+	+ (0,0.5pt)
+	$) {$\Box$};} %in the original code, $F$ is replaced with #1
+
+\mdfdefinestyle{testframe}{topline=false,rightline=false,bottomline=false,%
+	innerleftmargin=1em,linecolor=white,rightmargin=2em,skipbelow=1em,%
+	tikzsetting={draw=black,line width=.5pt,dashed,dash pattern= on 1pt off 3pt},%
+	firstextra={\mdfLABEL{(i)}},%
+	singleextra={\mdfLABEL{(i)}},%
+	secondextra={\mdfLABEL{$\phantom{.}$}},%
+	middleextra={\mdfLABEL{$\phantom{.}$}},%
+}
+
+
+
+\usepackage{caption}
+\usetikzlibrary{calc,fit,intersections,shapes,calc}
+\usetikzlibrary{backgrounds}
+\usepackage{systeme}
+\usepackage{multicol}
+
+\newcolumntype{?}{!{\vrule width 1pt}}
+
+
+%%These three lines are for the typewriter font. Comment them out if I don't want the font.
+%%%%%%\renewcommand*\ttdefault{lcmtt}
+%%%%%%\renewcommand*\familydefault{\ttdefault} %% Only if the base font of the document is to be typewriter style
+%%%%%%\usepackage[T1]{fontenc}
+%%%%%%
+
+\usepackage{tabularx, booktabs}
+
+
+\newenvironment{myitemize}
+{ \begin{itemize}
+		\setlength{\itemsep}{10pt}
+		\setlength{\parskip}{10pt}
+		\setlength{\parsep}{10pt}     }
+	{ \end{itemize}   
+	
+} 
+
+\usepackage{setspace}
+
+\font\maxi=cminch scaled 100
+\usepackage{tgadventor}
+%\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+\usepackage[T1]{fontenc}
+\newcommand*{\myfont}{\fontfamily{\sfdefault}\selectfont}
+\usepackage{pacioli}
+\usepackage[OT1]{fontenc}
+\usepackage{systeme}
+%\usepackage{ulem}
+
+%\usepackage{spalign}
+
+
+%\usepackage{AlegreyaSans} %% Option 'black' gives heavier bold face
+%% The 'sfdefault' option to make the base font sans serif
+%\renewcommand*\oldstylenums[1]{{\AlegreyaSansOsF #1}}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{%
+		\node[shape=circle,fill=blue!20,draw,inner sep=2pt] (char) {#1};}}
+
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\pagestyle{fancy} 
+
+\rfoot{{\small{Page \thepage\ of \pageref{LastPage}}}}
+\cfoot{}
+\renewcommand{\baselinestretch}{1.50}\normalsize
+
+
+
+
+\makeatletter
+\newenvironment{enumeratecount}[1]
+{\def\thisenumeratecountlabel{#1}\enumerate}
+{\edef\@currentlabel{\number\value{\@enumctr}}%
+	\label{\thisenumeratecountlabel}\endenumerate}
+\makeatother
+
+\usepackage{refcount}
+\newcommand{\addphrase}[3]{% #1 = label, #2 = text if number >1, #3 = text if number =1
+	\ifnum\getrefnumber{#1}>1
+	#2%
+	\else
+	#3%
+	\fi}
+
+
+\makeatletter
+% This command ignores the optional argument for itemize and enumerate lists
+\newcommand{\inlineitem}[1][]{%
+	\ifnum\enit@type=\tw@
+	{\descriptionlabel{#1}}
+	\hspace{\labelsep}%
+	\else
+	\ifnum\enit@type=\z@
+	\refstepcounter{\@listctr}\fi
+	\quad\@itemlabel\hspace{\labelsep}%
+	\fi}
+\makeatother
+
+\newcommand*\circledA[1]{\tikz[baseline=(char.base)]{%
+		\node[shape=circle,fill=green!20,draw,inner sep=2pt] (char) {#1};}}
+
+\opengraphsfile{Wk_12_DQ_Fa18}
+
+\begin{document}
+\thispagestyle{empty}
+
+%	\thispagestyle{empty}
+	\begin{center}
+		{\large{Week 13}}
+	\end{center}
+
+{\bfseries{Textbook sections to read and annotate before class:}} 5.5, 5.6 (examples 1-5).
+%\begin{enumerate*}[label=(\arabic*)]
+
+\smallskip
+
+	{\bfseries{Definitions to memorize before class:}} 
+
+\begin{description}[topsep=0pt,itemsep=-2ex,partopsep=0ex,parsep=1ex]
+\item[From Weeks 1-10] Linear equations and inequalities, feasible region and objective function, linear programming algorithm,  function, domain, range, interval form, transformation, operations on functions, one-to-one function, inverse, polynomial, degree, leading coefficient, end behavior, zero, multiplicity, $x\to \infty$, $x\to -\infty$, rational function, arrow notation ($x\to a^{-}, x\to a^{+}, x\to \infty, x\to -\infty$), vertical asymptote, horizontal asymptote, slant asymptote, exponential function, graph of an exponential function, compound interest, annual percentage yield, $e$, natural exponential function, continuous compounding, $\log_a x$, $\log x$, $\ln x$, doubling time, half life, relative growth rate, unit circle, terminal point, reference point, periodic function, sine, cosine, amplitude, period, tangent, cotangent, phase shift.
+\item[From Week 13] inverse sine, inverse cosine, $\arcsin$, $\arccos$.
+\end{description}
+\smallskip	
+
+{\bfseries{Do I really need to know functions?}} 
+
+Yes! In finance:
+\begin{description}[topsep=0pt,itemsep=-2ex,partopsep=0ex,parsep=1ex, nosep]
+	\item[Basic bookkeping:] use addition, subtraction, multiplication, division.
+	\item[Compound interest:] exponentials and logarithms;
+	\item[Time series analysis of stock markets:] trigonometric functions. For example, fast Fourier transforms are mathematical tools to predict the future values of data, and are based on sine and cosine.
+\end{description}
+	
+	%%{\bfseries{Skills to review before class:} }
+%%\begin{multicols}{2}
+	%\begin{enumerate}[topsep=0pt,itemsep=-2ex,partopsep=0ex,parsep=1ex]
+		
+%%	\begin{enumerate}[label= {  \arabic*:},labelindent=1em, style = standard,leftmargin=3pc, labelsep=*, itemsep=-2ex,partopsep=0ex,parsep=1ex]
+%%		\item Rewrite a log identity or equation in exponential form.
+%%		\item Rewrite a exponential identity or equation in log form.
+%%		\item Find the domain, range,  vertical asymptote and intercept(s) of a transformation of a logarithmic function.
+%%		\item Expand or condense an expression using the laws of logarithms.
+		
+		%%%%%%%%%%%%%%%%%%
+%%	\end{enumerate}
+		
+%\end{multicols}
+{\bfseries{Bring to class:} } A paper notebook with your annotations of the reading and your work on the questions listed below; a pen and/or a sharpened pencil and an eraser.
+
+{\bfseries{Laptops/Phones Policy:}}  No devices in class, unless the assignment requires it.
+
+{\bfseries{Audio-Recording:}} I will be calling people (by name) from the class roster to go over the discussion questions: to ensure everyone's privacy, please do not audio-record the class.
+
+
+
+% References for the above: 
+% 1) https://www.math.utah.edu/~gustafso/s2016/2270/published-projects-2016/williamsBarrett/williamsBarrett-Fast-Fourier-Transform-Predicting-Financial-Securities-Prices.pdf
+
+%2) http://peterelsea.com/Maxtuts_msp/FourierNotes_2010.pdf Good explanation of basic trig functions
+
+\begin{center}
+
+{\large{\bfseries{Discussion Questions for Week 13} }}
+\end{center}
+	%\begin{enumerate}[label=\protect\circled{\arabic*}]
+		\renewcommand{\labelenumi}{(\arabic{enumi})}
+		%%%%%%%%%%%%%%%%%%%
+		%%%%% https://www.illustrativemathematics.org/HSF-LE.A
+		%%%%% GREAT REFERENCE
+		%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{enumerate}[label= \protect\circled{\arabic*}]
+
+\item Find all the solutions of the equation $\displaystyle \sin t = 1$ (Note: the equation has infinitely many solutions). Why is solving this equation much easier than solving the equation $\displaystyle \sin t =0.9$?
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{enumerate}	
+
+\begin{mdframed}[style=testframe]
+	The {\bf{inverse sine}} function is the inverse function of $\sin x$, provided we restrict the domain of $\sin x$ to $\left [ -\frac{\pi}{2},\frac{\pi}{2}\right ]$. The inverse sine is denoted by $\sin^{-1}$ or $\arcsin$.
+	\begin{itemize}[noitemsep,topsep=0pt]
+		\item[$\circ$] The domain of the inverse sine is $[-1,1]$.
+		\item[$\circ$]The range of the inverse sine is $\left [ -\frac{\pi}{2},\frac{\pi}{2}\right ]$.
+\end{itemize}
+	The {\bf{inverse cosine}} function is the inverse function of $\cos x$, provided we restrict the domain of $\cos x$ to $[0,\pi]$. The inverse cosine is denoted by $\cos^{-1}$ or $\arccos$.
+	\begin{itemize}[noitemsep,topsep=0pt]
+		\item[$\circ$] The domain of the inverse cosine is $[-1,1]$.
+		\item[$\circ$]The range of the inverse cosine is $[0,\pi]$.
+\end{itemize}
+\end{mdframed}
+
+\begin{enumerate}[label=\protect\circled{\arabic*},resume]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\item Use the unit circle chart to find the exact value of each of the following quantities:
+	\begin{multicols}{2}
+		\begin{enumerate}[label=(\arabic*),leftmargin=1cm,series=lafter,noitemsep,topsep=0pt]
+            \item $\displaystyle \sin^{-1}(0)$
+			\item $\displaystyle \sin^{-1}(1)$
+			\item $\displaystyle \sin^{-1}(2)$
+            \item $\displaystyle \sin^{-1}(-1)$
+			\item $\displaystyle \sin^{-1}(-2)$
+			\item $\displaystyle \sin^{-1}\left ( -\frac{1}{2} \right )$
+			\item $\displaystyle \cos^{-1}(0)$
+			\item $\displaystyle \cos^{-1}(1)$
+			\item $\displaystyle \cos^{-1}(2)$
+			\item $\displaystyle \cos^{-1}(-1)$
+			\item $\displaystyle \cos^{-1}(-2)$
+			\item $\displaystyle \cos^{-1}\left ( -\frac{1}{2} \right )$
+		\end{enumerate}
+	\end{multicols}
+
+
+
+\item True or false?
+	\begin{multicols}{2}
+		\begin{enumerate}[label=(\arabic*),leftmargin=1cm,series=lafter,noitemsep,topsep=0pt]
+
+\item  $\displaystyle \sin^{-1}\left ( \sin \left ( \frac{11\pi}{4}\right ) \right ) = \frac{11\pi}{4}$.
+\item  $\displaystyle \sin^{-1}\left ( \sin \left ( -\frac{\pi}{4}\right ) \right ) = -\frac{\pi}{4}$.
+\item  $\displaystyle \sin^{-1}\left ( \sin \left ( \frac{3\pi}{4}\right ) \right ) = \frac{3\pi}{4}$.
+\item  $\displaystyle \cos^{-1}\left ( \cos \left ( \frac{11\pi}{4}\right ) \right ) = \frac{11\pi}{4}$.
+\item  $\displaystyle \cos^{-1}\left ( \cos \left ( -\frac{\pi}{4}\right ) \right ) = -\frac{\pi}{4}$.
+\item  $\displaystyle \cos^{-1}\left ( \cos \left ( \frac{3\pi}{4}\right ) \right ) = \frac{3\pi}{4}$.
+%\item $\displaystyle \sin^{-1}(x)=\frac{1}{\sin x}$.
+
+
+\end{enumerate}\end{multicols}
+
+\item Find the exact values of each of the quantities listed below when $\displaystyle x=\frac{1}{2}$.
+	\begin{multicols}{3}
+		\begin{enumerate}[label=(\arabic*),leftmargin=1cm,series=lafter,noitemsep,topsep=0pt]
+			\item $\displaystyle \cos ^{-1}\left ( x\right )$
+			\item $\displaystyle \cos (x^{-1})$
+			\item $\displaystyle (\cos x)^{-1}$
+			\item $\displaystyle \sin ^{-1}\left ( x\right )$
+			\item $\displaystyle \sin (x^{-1})$
+			\item $\displaystyle (\sin x)^{-1}$
+		\end{enumerate}	
+		\end{multicols}	
+
+
+\item Consider the equations $\displaystyle \sin(x)=0.95$ and $\displaystyle \cos(x)=0.95$. How many solutions does each equation have in $[0,2\pi]$? In which quadrant(s) are the solution(s) located? How do you know? (Hint: for the first equation, visualize $y=0.95$ on the unit circle.) Challenge: find the exact value(s) of all the solutions of the equations in $[0,2\pi]$. (Hint: Use the inverse sine and inverse cosine.)
+
+
+	\item  A Ferris wheel with 59 capsules has a diameter of 110 meters and its lowest point (at the 6 o'clock position) is 5 meters above the ground. One full rotation of the wheel takes 24 minutes, and the wheel rotates counterclockwise at a constant speed. The capsules are labeled from 1 to 59. We start observing when capsule 1 is at the lowest point on the wheel. If $H(t)$ is the height of capsule 1 $t$ minutes after we start the observation, when is capsule 1 going to be at a height of 70 meters from the ground during the first rotation? 
+	
+\item Suppose the chance of significant cloud
+cover on a city on day $t$ of the year (January 1st corresponds to $t=0$) is
+$D$\%. $D$ is modeled by the function
+$\displaystyle C(t) = 20 \cos(0.02t) + 50$. Find all the time intervals in one year ($0\leq t \leq 365$)  when the chance of a cloud cover is at least 60\%.
+
+\item A person's body temperature fluctuates during the day following  Circadian rhythms. The lowest temperature, 36.6 degrees centigrades, occurs at 4 am, and the highest temperature, 37.4 degrees centigrades, occurs at 4 pm. Write a formula for a sinusoidal function that models the person's body temperature throughout the day, assuming that $t=0$ at midnight. Then find the times when the body temperature is at least 37 degrees centigrades.
+
+	\item Consider three functions: $f(x)=\sin (2x)$ (in red), $g(x)=\sin(3x)$ (in green)  and the mystery function $h(x)$ (in blue):
+
+ \begin{tikzpicture}[scale=2]
+    \begin{axis}[
+     clip=false,
+     xmin=0,xmax=4.5*pi,
+ymin=-2,ymax=2,
+     axis lines=left,
+     axis x line=middle,
+     axis y line=left,
+xtick={0,1.57,3.14,4.71,6.28,12.57},
+     xticklabels={$0$, $\frac{\pi}{2}$,$\pi\,$,$\,\,\,\frac{3}{2}\pi$,$\,\,\,2\pi$,$\,\,\,4\pi$},
+%\draw (9,11) node[anchor=north west,rotate=0] {$x-y=-4$};
+     ]
+      \addplot[domain=0:4.5*pi,samples=300,red]{sin(deg(2*x))};
+\addplot[domain=0:4.5*pi,samples=200,thick,green]{sin(deg(3*x))};
+      \addplot[domain=0:4.5*pi,samples=500,thick,blue]{sin(deg(2*x))+sin(deg(3*x))};
+    \end{axis}
+  \end{tikzpicture}
+
+\begin{enumerate}
+\item What is the period of $h(x)$?
+\item How many maxima does $h(x)$ have in $[0,\pi]$? How many minima? What are the $x$ value of the maxima?
+\item Fill out the table shown below, and compare it with the graph of the mystery function.
+
+			
+			
+			\begin{minipage}{\linewidth}
+				\centering
+				%\captionof{table}{} \label{tab:title} 
+				\begin{tabular}{|l|l|l|l|l|l|l|l|}
+					\hline
+					$x$    & $0$ & $\frac{\pi}{6}$ & $\frac{\pi}{3}$ & $\frac{\pi}{2}$ &$\frac{2\pi}{3}$ & $\frac{5\pi}{6}$ & $\pi$ \\ \hline
+					$\sin(2x)+\sin(3x)$  &      &     &     &     &     &     &     \\ \hline
+				\end{tabular}
+			\end{minipage}
+\end{enumerate}
+	\end{enumerate}
+	
+	\par\medskip\hrule\medskip
+
+
+
+%\end{enumerate}
+\newpage
+
+\setlength\fboxrule{2pt}\setlength\fboxsep{2mm}
+\fbox{This chart will be provided in the quizzes and in the final exam.} 
+
+\par\medskip\hrule\medskip
+
+
+\begin{tikzpicture}[scale=5.3,cap=round,>=latex]
+% draw the coordinates
+\draw[->] (-1.5cm,0cm) -- (1.5cm,0cm) node[right,fill=white] {$x$};
+\draw[->] (0cm,-1.5cm) -- (0cm,1.5cm) node[above,fill=white] {$y$};
+
+% draw the unit circle
+\draw[thick] (0cm,0cm) circle(1cm);
+
+\foreach \x in {0,30,...,360} {
+	% lines from center to point
+	\draw[gray] (0cm,0cm) -- (\x:1cm);
+	% dots at each point
+	\filldraw[black] (\x:1cm) circle(0.4pt);
+	% draw each angle in degrees
+	%\draw (\x:0.6cm) node[fill=white] {$\x^\circ$};
+}
+
+\foreach \x in {0,45,...,360} {
+	% lines from center to point
+	\draw[gray] (0cm,0cm) -- (\x:1cm);
+	% dots at each point
+	\filldraw[black] (\x:1cm) circle(0.4pt);
+	% draw each angle in degrees
+	%\draw (\x:0.6cm) node[fill=white] {$\x^\circ$};
+}
+% draw each angle in radians
+\foreach \x/\xtext in {
+	30/\frac{\pi}{6},
+	45/\frac{\pi}{4},
+	60/\frac{\pi}{3},
+	90/\frac{\pi}{2},
+	120/\frac{2\pi}{3},
+	135/\frac{3\pi}{4},
+	150/\frac{5\pi}{6},
+	180/\pi,
+	210/\frac{7\pi}{6},
+	225/\frac{5\pi}{4},
+	240/\frac{4\pi}{3},
+	270/\frac{3\pi}{2},
+	300/\frac{5\pi}{3},
+	315/\frac{7\pi}{4},
+	330/\frac{11\pi}{6},
+	360/2\pi}
+\draw (\x:0.85cm) node[fill=white] {$\xtext$};
+
+\foreach \x/\xtext/\y in {
+	% the coordinates for the first quadrant
+	30/\frac{\sqrt{3}}{2}/\frac{1}{2},
+	45/\frac{\sqrt{2}}{2}/\frac{\sqrt{2}}{2},
+	60/\frac{1}{2}/\frac{\sqrt{3}}{2},
+	% the coordinates for the second quadrant
+	150/-\frac{\sqrt{3}}{2}/\frac{1}{2},
+	135/-\frac{\sqrt{2}}{2}/\frac{\sqrt{2}}{2},
+	120/-\frac{1}{2}/\frac{\sqrt{3}}{2},
+	% the coordinates for the third quadrant
+	210/-\frac{\sqrt{3}}{2}/-\frac{1}{2},
+	225/-\frac{\sqrt{2}}{2}/-\frac{\sqrt{2}}{2},
+	240/-\frac{1}{2}/-\frac{\sqrt{3}}{2},
+	% the coordinates for the fourth quadrant
+	330/\frac{\sqrt{3}}{2}/-\frac{1}{2},
+	315/\frac{\sqrt{2}}{2}/-\frac{\sqrt{2}}{2},
+	300/\frac{1}{2}/-\frac{\sqrt{3}}{2}}
+\draw (\x:1.25cm) node[fill=white] {$\left(\xtext,\y\right)$};
+
+% draw the horizontal and vertical coordinates
+% the placement is better this way
+\draw (-1.25cm,0cm) node[above=1pt] {$(-1,0)$}
+(1.25cm,0cm)  node[above=1pt] {$(1,0)$}
+(0cm,-1.25cm) node[fill=white] {$(0,-1)$}
+(0cm,1.25cm)  node[fill=white] {$(0,1)$};
+\end{tikzpicture}
+
+
+
+
+\begin{mdframed}[style=exampledefault,linecolor=blue,linewidth=4pt,frametitle={Looking ahead to the last few weeks of the course...}]
+	\begin{footnotesize}
+	%{\underline{Advice on how to excel in precalculus:} }
+	\begin{enumerate}[label= {  \arabic*:},labelindent=2em, style = standard,leftmargin=4pc, labelsep=*, noitemsep]
+		\item Don't forget to complete and submit the weekly homework and the essay.
+		\item Mark the date, time and location of the final exam in Your calendar.
+		\item Familiarize Yourself with the assessment plan for Precalculus. You can find the assessment plan in the syllabus (posted on NYU Classes).
+		\item Make every effort to {\textcolor{red}{{\bf{participate}}}} in class. Participation is part of our assessment plan, and it helps You get the most out of each class meeting. 
+		\item Please note that if You don't read the weekly section ahead of time and attempt the discussion questions, it will be very difficult for You to participate meaningfully and receive top marks for participation.
+		
+		
+	\end{enumerate}
+	\end{footnotesize}
+\end{mdframed}
+
+\end{document} 
+              

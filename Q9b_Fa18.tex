@@ -1,0 +1,128 @@
+\documentclass[11pt,answers]{exam}
+
+\usepackage{etex}
+\usepackage{amssymb,amsmath,multicol} %<-- InWorksheetExam1 i also have fancyhdr,
+
+\usepackage[metapost]{mfpic}
+\usepackage[pdftex]{graphicx}
+\usepackage{tabu}
+
+\usepackage{pst-plot}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.9}
+
+\usepackage{tikz}
+\usepackage{tkz-2d}
+\usepackage{tkz-base}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows}
+
+\usepackage{systeme}
+
+\usepackage[inline]{enumitem}
+\usepackage{refcount}%<-- non in WorksheetExam1
+
+\usepackage{pstricks-add,pst-eucl}
+\usepackage{systeme}
+\usepackage{setspace}
+\usepackage{multicol}
+
+
+\usepackage[inline]{enumitem}   
+\makeatletter
+% This command ignores the optional argument for itemize and enumerate lists
+\newcommand{\inlineitem}[1][]{%
+\ifnum\enit@type=\tw@
+    {\descriptionlabel{#1}}
+  \hspace{\labelsep}%
+\else
+  \ifnum\enit@type=\z@
+       \refstepcounter{\@listctr}\fi
+    \quad\@itemlabel\hspace{\labelsep}%
+\fi}
+\makeatother
+
+
+\def\f{x+1} \def\g{-x/3+2}  \def\h{-x+3}
+
+\newcommand{\vasymptote}[2][]{
+    \draw [densely dashed,#1] ({rel axis cs:0,0} -| {axis cs:#2,0}) -- ({rel axis cs:0,1} -| {axis cs:#2,0});
+}
+
+\boxedpoints
+
+\addpoints
+%\printanswers
+\noprintanswers
+
+\opengraphsfile{Q9b_Fa18}
+
+\begin{document}
+\extrawidth{-0.3in}
+\pagestyle{headandfoot}
+
+\setlength{\hoffset}{-.25in}
+
+\extraheadheight{-.3in}
+\runningheadrule
+\firstpageheader{\bfseries {Precalculus}}{ \bfseries {Quiz 9 }}{\bfseries {11/20/18}} 
+
+\begin{center}
+	This quiz has \numquestions\ questions, for a total of \numpoints\
+	points and \numbonuspoints\ bonus points.
+\end{center}
+
+
+\firstpagefooter{} %%&&CHANGED
+                {}
+                {%Points earned: \hbox to 0.5in{\hrulefill}
+                % out of  \pointsonpage{\thepage} points
+                }
+                 
+						
+
+\vspace*{0.1cm}
+\hbox to \textwidth { \scshape {Name:} \enspace\hrulefill}
+\vspace{0.1cm}
+
+
+
+
+\pointpoints{point}{points}
+
+\begin{questions}
+
+
+\addpoints
+
+
+
+\question[2] A quantity, called Quantity A, starts at a size of 100 units (at $t=0$ minutes) and grows exponentially. After 1 minutes, the size of Quantity A is 104 units. Find the number of minutes it takes for Quantity A to double.    Show all Your work step-by-step and give Your answer in exact form. Note: You do not have to provide a decimal approximation of Your answer.
+
+
+\fillwithdottedlines{3cm}
+
+\question[2] Another quantity, called Quantity B, starts at a size of 100 units (at $t=0$ minutes) and decreases exponentially. After 1 minutes, the size of Quantity A is 96 units. Find the number of minutes it takes for Quantity B to reach a size of 50 units.     Show all Your work step-by-step and give Your answer in exact form. Note: You do not have to provide a decimal approximation of Your answer.
+
+\fillwithdottedlines{3cm}
+
+\question[2] The size of a population $P$ is given by the function: $\displaystyle P(t)=200(2-e^{0.18t})$. Find the initial size of the population. Show all Your work step-by-step.
+
+\fillwithdottedlines{3cm}
+
+\bonusquestion[1] Is this statement true or false? {\emph {A quantity $Q(t)$ decreases exponentially. Assume that $t$ is measured in minutes, and that $Q(0)=10000$. Then the time it takes for the quantity to decrease from 10000 to 5000 is the same as the time it takes for the quantity to decrease from 5000 to 2500. }}
+
+\begin{oneparchoices}
+\choice The statement is true.
+\choice The statement is false.
+\choice There isn't enough information to be able to answer this question.
+\end{oneparchoices}
+
+\question[2] Solve the equation $\displaystyle \log(x+8)-\log(x-1)=1$. Show Your work step-by-step.
+
+	\fillwithdottedlines{2cm}
+
+
+\end{questions}
+
+\end{document}                 

@@ -1,0 +1,137 @@
+\documentclass[11pt,answers]{exam}
+
+\usepackage{etex}
+\usepackage{amssymb,amsmath,multicol} %<-- InWorksheetExam1 i also have fancyhdr,
+
+\usepackage[metapost]{mfpic}
+\usepackage[pdftex]{graphicx}
+\usepackage{tabu}
+
+\usepackage{pst-plot}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.9}
+
+\usepackage{tikz}
+\usepackage{tkz-2d}
+\usepackage{tkz-base}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows}
+
+\usepackage{systeme}
+
+\usepackage[inline]{enumitem}
+\usepackage{refcount}%<-- non in WorksheetExam1
+
+\usepackage{pstricks-add,pst-eucl}
+\usepackage{systeme}
+\usepackage{setspace}
+\usepackage{multicol}
+
+
+\usepackage[inline]{enumitem}   
+\makeatletter
+% This command ignores the optional argument for itemize and enumerate lists
+\newcommand{\inlineitem}[1][]{%
+\ifnum\enit@type=\tw@
+    {\descriptionlabel{#1}}
+  \hspace{\labelsep}%
+\else
+  \ifnum\enit@type=\z@
+       \refstepcounter{\@listctr}\fi
+    \quad\@itemlabel\hspace{\labelsep}%
+\fi}
+\makeatother
+
+
+\def\f{x+1} \def\g{-x/3+2}  \def\h{-x+3}
+
+\newcommand{\vasymptote}[2][]{
+    \draw [densely dashed,#1] ({rel axis cs:0,0} -| {axis cs:#2,0}) -- ({rel axis cs:0,1} -| {axis cs:#2,0});
+}
+
+\boxedpoints
+
+\addpoints
+%\printanswers
+\noprintanswers
+
+\opengraphsfile{Q7a_Fa18}
+
+\begin{document}
+\extrawidth{-0.3in}
+\pagestyle{headandfoot}
+
+\setlength{\hoffset}{-.25in}
+
+\extraheadheight{-.3in}
+\runningheadrule
+\firstpageheader{\bfseries {Precalculus}}{ \bfseries {Quiz 7 }}{\bfseries {11/6/18}} 
+
+\begin{center}
+	This quiz has \numquestions\ questions, for a total of \numpoints\
+	points and \numbonuspoints\ bonus points.
+\end{center}
+
+
+\firstpagefooter{} %%&&CHANGED
+                {}
+                {%Points earned: \hbox to 0.5in{\hrulefill}
+                % out of  \pointsonpage{\thepage} points
+                }
+                 
+						
+
+\vspace*{0.1cm}
+\hbox to \textwidth { \scshape {Name:} \enspace\hrulefill}
+\vspace{0.1cm}
+
+
+
+
+\pointpoints{point}{points}
+
+\begin{questions}
+
+
+\addpoints
+
+
+
+\question[2] The present value of a sum of money is the amount that must be invested now, at a given rate of interest, to produce the desired sum at a later date. 
+
+Find the present value of \$10,000 if interest is paid at a rate of 0.8\% per year, compounded semiannually, for 2 years. Write Your answer in exact form: Your answer may include fractions and/or exponents, but not decimals.
+
+\fillwithdottedlines{2cm}
+\bonusquestion[1]  The function $\displaystyle f(x)=7^x$ is one-to-one.
+\begin{oneparchoices}
+	\choice True
+	\choice False
+\end{oneparchoices}
+
+\question The function $f(x)$ is given by: $\displaystyle f(x) = 2^{x-1}+2$. 
+
+\begin{parts}
+	\part[1] Write the domain of  $\displaystyle f(x)$ in interval form. \dotfill
+	\part[2] Write the function transformations of $\displaystyle y=2^x$ that result in $f(x)$. Show evidence of Your thinking.
+	
+	\fillwithdottedlines{4cm}
+	\part[1] Write the range of  $\displaystyle f(x)$ in interval form. \dotfill
+	
+	\part[1] As $x\to\infty$, $f(x)\to$ \dotfill
+	\part[1] As $x\to-\infty$, $f(x)\to$ \dotfill
+	\part[2] Find the $y$-intercept of $f(x)$. Show Your work step-by-step.
+		
+		\fillwithdottedlines{1cm}
+
+	
+\end{parts}
+\question[1]  Find the growth factor for the situation described below. Assume that the time is in decades.
+
+{\ttfamily{The population of a city grows by 5\% per decade.}}
+
+(Note: you need to find the growth factor only, not the equation for the population growth.)
+
+		\fillwithdottedlines{2cm}
+\end{questions}
+
+\end{document}                 

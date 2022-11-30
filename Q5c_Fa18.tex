@@ -1,0 +1,145 @@
+\documentclass[11pt,answers]{exam}
+
+\usepackage{etex}
+\usepackage{amssymb,amsmath,multicol} %<-- InWorksheetExam1 i also have fancyhdr,
+
+\usepackage[metapost]{mfpic}
+\usepackage[pdftex]{graphicx}
+\usepackage{tabu}
+
+\usepackage{pst-plot}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.9}
+
+\usepackage{tikz}
+\usepackage{tkz-2d}
+\usepackage{tkz-base}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows}
+
+\usepackage{systeme}
+
+\usepackage[inline]{enumitem}
+\usepackage{refcount}%<-- non in WorksheetExam1
+
+\usepackage{pstricks-add,pst-eucl}
+\usepackage{systeme}
+\usepackage{setspace}
+\usepackage{multicol}
+
+
+\usepackage[inline]{enumitem}   
+\makeatletter
+% This command ignores the optional argument for itemize and enumerate lists
+\newcommand{\inlineitem}[1][]{%
+\ifnum\enit@type=\tw@
+    {\descriptionlabel{#1}}
+  \hspace{\labelsep}%
+\else
+  \ifnum\enit@type=\z@
+       \refstepcounter{\@listctr}\fi
+    \quad\@itemlabel\hspace{\labelsep}%
+\fi}
+\makeatother
+
+
+\def\f{x+1} \def\g{-x/3+2}  \def\h{-x+3}
+
+\newcommand{\vasymptote}[2][]{
+    \draw [densely dashed,#1] ({rel axis cs:0,0} -| {axis cs:#2,0}) -- ({rel axis cs:0,1} -| {axis cs:#2,0});
+}
+
+\addpoints
+%\printanswers
+\noprintanswers
+
+\opengraphsfile{Q5c_Fa18}
+
+\begin{document}
+\extrawidth{-0.3in}
+\pagestyle{headandfoot}
+
+\setlength{\hoffset}{-.25in}
+
+\extraheadheight{-.3in}
+\runningheadrule
+\firstpageheader{\bfseries {Precalculus}}{ \bfseries {Quiz 5 }}{\bfseries {10/16/18}} 
+
+\begin{center}
+	This quiz has \numquestions\ questions, for a total of \numpoints\
+	points and \numbonuspoints\ bonus points.
+\end{center}
+
+
+\firstpagefooter{} %%&&CHANGED
+                {}
+                {%Points earned: \hbox to 0.5in{\hrulefill}
+                % out of  \pointsonpage{\thepage} points
+                }
+                 
+						
+
+\vspace*{0.1cm}
+\hbox to \textwidth { \scshape {Name:} \enspace\hrulefill}
+\vspace{0.1cm}
+
+
+
+
+\pointpoints{point}{points}
+
+\begin{questions}
+
+
+\addpoints
+
+\question The quadratic function $f(x)$ is given by: $\displaystyle f(x) = -(x+2)^2+2$. 
+
+\begin{parts}
+	\part[2] Write the range of  $\displaystyle f(x)$ in interval form. Show evidence of Your thinking.
+	
+	\fillwithdottedlines{2cm}
+	
+	\part[1] As $x\to\infty$, $f(x)\to$ \dotfill
+	\part[1] As $x\to-\infty$, $f(x)\to$ \dotfill
+	
+	
+\end{parts}
+
+\question[1] True or False? The polynomial function $P$has degree 4, one local maximum, and no local minima.
+\begin{oneparchoices}
+	\choice Possibly true \choice Impossible
+\end{oneparchoices}
+
+\question The polynomial function $Q(x)$ is given by: 
+$\displaystyle Q(x) =-2 (x-1)^2(x+1)^3$.
+
+\begin{parts}
+	\part[1] As $x\to\infty$, $Q(x)\to$ \dotfill
+	\part[1] As $x\to -\infty$, $Q(x)\to$ \dotfill
+	%\part[1] The $y$-intercept of $Q(x)$ is: \dotfill
+	\part[2] Find all the $x$-intercepts and state their multiplicity.
+	
+\fillwithdottedlines{3cm}
+
+\end{parts}
+
+\bonusquestion[2]  Draw a possible graph of a polynomial $P(x)$ of even degree, which satisfies all of the following:
+\begin{itemize}
+	\item There are exactly four $x$-intercepts:  $(1,0)$, $(2,0)$, $(3,0)$ and $(4,0)$;
+	\item The graph bounces off the $x$-axis at $(2,0)$;
+	\item The graph bounces off the $x$-axis at $(3,0)$.
+	
+\end{itemize}   
+
+Make sure to draw and label the $x$ and $y$-axes and include units.
+
+\begin{tikzpicture}[thick,scale=0.9, every node/.style={scale=0.6}]
+
+\draw[gray!70, thin, step=0.5] (-1,-3) grid (\linewidth-\pgflinewidth,3);
+
+\end{tikzpicture} 
+
+\end{questions}
+
+\end{document}                 

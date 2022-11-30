@@ -1,0 +1,288 @@
+\documentclass[12pt,dvipsnames]{article}
+\usepackage[margin=0.4in,footskip=0.1in]{geometry}
+\usepackage{etex}
+\usepackage{amssymb,amsmath,multicol} %<-- InWorksheetExam1 i also have fancyhdr,
+\usepackage{hyperref}
+\usepackage[metapost]{mfpic}
+\usepackage[pdftex]{graphicx}
+\usepackage{csquotes}
+\usepackage{pst-plot}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.9}
+
+\usepackage{tikz}
+\usepackage{tkz-2d}
+\usepackage{tkz-base}
+\usetikzlibrary{calc}
+\usepackage{color}
+\usepackage[inline]{enumitem}
+\usepackage{refcount}%<-- non in WorksheetExam1
+
+\usepackage[linewidth=1pt]{mdframed}
+
+\usepackage{caption}
+\usetikzlibrary{calc,fit,intersections,shapes,calc}
+\usetikzlibrary{backgrounds}
+\usepackage{systeme}
+\usepackage{multicol}
+
+\newcolumntype{?}{!{\vrule width 1pt}}
+
+
+%%These three lines are for the typewriter font. Comment them out if I don't want the font.
+%%%%%%\renewcommand*\ttdefault{lcmtt}
+%%%%%%\renewcommand*\familydefault{\ttdefault} %% Only if the base font of the document is to be typewriter style
+%%%%%%\usepackage[T1]{fontenc}
+%%%%%%
+
+\usepackage{tabularx, booktabs}
+
+
+\newenvironment{myitemize}
+{ \begin{itemize}
+		\setlength{\itemsep}{10pt}
+		\setlength{\parskip}{10pt}
+		\setlength{\parsep}{10pt}     }
+	{ \end{itemize}   
+	
+} 
+
+\usepackage{setspace}
+
+\font\maxi=cminch scaled 100
+\usepackage{tgadventor}
+%\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+\usepackage[T1]{fontenc}
+\newcommand*{\myfont}{\fontfamily{\sfdefault}\selectfont}
+\usepackage{pacioli}
+\usepackage[OT1]{fontenc}
+\usepackage{systeme}
+
+
+%\usepackage{spalign}
+
+
+%\usepackage{AlegreyaSans} %% Option 'black' gives heavier bold face
+%% The 'sfdefault' option to make the base font sans serif
+%\renewcommand*\oldstylenums[1]{{\AlegreyaSansOsF #1}}
+
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{%
+		\node[shape=circle,fill=blue!20,draw,inner sep=2pt] (char) {#1};}}
+
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\pagestyle{fancy} 
+
+\rfoot{{\small{Page \thepage\ of \pageref{LastPage}}}}
+\cfoot{}
+\renewcommand{\baselinestretch}{1.50}\normalsize
+
+
+
+\opengraphsfile{Wk_5_DQ_Fa18}
+
+\begin{document}
+\thispagestyle{empty}
+
+%	\thispagestyle{empty}
+	\begin{center}
+		{\large{Week 5}}
+	\end{center}
+
+{\bfseries{Textbook sections to read and annotate before class:}}  3.1 and 3.2. Your main focus should be on section 3.2, since 3.1 is review material. Please skip Example 4 on pg 260, part b of Examples 5 and 6 (pg 260-261), example 10 (pg 265). Example 8 (pg 263) is important: in class we will see how to sketch the graph without having to create a table of values.
+\smallskip
+
+	{\bfseries{Definitions to memorize before class:}} 
+
+\begin{description}[topsep=0pt,itemsep=-2ex,partopsep=0ex,parsep=1ex]
+\item[From Weeks 1-4] Linear equations and inequalities, feasible region and objective function, linear programming algorithm,  function, domain, range, interval form, transformation, operations on functions, one-to-one function, inverse. 
+\item[From Sections 3.1, 3.2] Polynomial, degree, leading coefficient, end behavior, zero, multiplicity.
+\end{description}
+\smallskip	
+	
+	{\bfseries{Skills to review before class:} }
+\begin{multicols}{2}
+	\begin{enumerate}[topsep=0pt,itemsep=-2ex,partopsep=0ex,parsep=1ex]
+		\item \label{item:domsum} Identify the domain of a function obtained through addition, subtraction, multiplication or division of two functions;
+		\item Fill out a table of values for a function obtained through one of the operations listed in item \ref{item:domsum};
+		\item Identify the domain of a composition of two functions;
+		\item Decide whether a function has an inverse;
+		\item Apply the horizontal line test;
+		\item Explain the scope of the vertical line test and of the horizontal line test;
+		\item Find the inverse of a one-to-one function (verbally, from a table and algebraically);
+		\item Give verbal explanations of the meaning of the inverse function in a practical application problem;
+		\item Complete the square of a quadratic expression (reference: see for example the Khan Academy video \url{http://bit.ly/1N9QKic});
+                     \item Memorize the shape of the graphs of $\displaystyle y=x, y=x^2, y=x^3, y=x^4$ (see pg 255).
+		
+		%%%%%%%%%%%%%%%%%%
+	\end{enumerate}
+		
+\end{multicols}
+{\bfseries{Bring to class:} } A paper notebook with your annotations of the reading and your work on the questions listed below; a pen and/or a sharpened pencil and an eraser.
+
+{\bfseries{Laptops/Phones Policy:}}  No devices in class, unless the assignment requires it.
+
+{\bfseries{Audio-Recording:}} I will be calling people (by name) from the class roster to go over the discussion questions: to ensure everyone's privacy, please do not audio-record the class.
+
+
+\begin{center}
+
+{\large{\bfseries{Reading and Discussion Questions for Week 5} }}
+\end{center}
+
+\begin{enumerate}[label=\arabic*., leftmargin=2\parindent,
+labelindent=\parindent, labelsep=*]	
+
+	\item True or False? The graph of $\displaystyle f(x)=2^x$ is a parabola because $f$ is a quadratic function. 
+	\item What is the domain of a quadratic function? How do you know?
+	\item What is the range of a quadratic function? How do you know?
+	%\item  The standard form of the quadratic function defined by $\displaystyle f(x)=2x^2+4x-16$ is $\displaystyle f(x)=2(x+1)^2-18$.
+ %What function transformations of $\displaystyle h(x)=x^2$ result in $f(x)$?
+%\item What are the $x$-intercepts of $\displaystyle f(x)=2x^2+4x-16$?
+%\item What is the $y$-intercept of $\displaystyle f(x)=2x^2+4x-16$?
+	
+	\item \label{item:domdoc} In Example 3 on pg. 248 the textbook finds the standard form of $\displaystyle f(x)=-x^2+x+2$. Use the standard form to find the transformations of $\displaystyle h(x)=x^2$ that result in $f(x)$. 
+%	\item Redo part \ref{item:domdoc} starting with  $\displaystyle g(x)= -2x^2+4x+3$. What is the maximum value of the parabola $\displaystyle g(x)= -2x^2+4x+3$? What is the $x$-value that results in this maximum value?
+	\item Read and annotate Example 5. Then solve Exercise 55 (copied below).
+	\smallskip
+	
+	A ball is thrown across a playing field from a height of 5 ft above the ground at an angle of $45^0$ to the horizontal at a speed of 20 ft/s. The path of the ball is modeled by $\displaystyle f(x)=-\frac{32}{20^2}x^2+x+5$, where $x$ is the distance in feet that the ball has traveled horizontally. Find the maximum height attained by the ball and the horizontal distance that the ball has traveled when it hits the ground.
+	
+	\item On pg. 255, 256 and 257 you have read about equations of polynomials and their graphs. Explain why the graph of the function shown below cannot be a polynomial function.
+	\begin{center}
+	\begin{mfpic}[20]{-3}{6}{-2}{5}
+		
+		\arrow[b4pt]\polyline{(1,0), (5,2)}
+		\reverse\arrow[b4pt]\polyline{(1,0), (-6,-2)}
+		%\polyline{(2,0), (4,2)}
+		%\point[5pt]{(1,0), (5,2)}
+		\tcaption{\scriptsize $y=f(x)$}
+		\axes
+		\xmarks{-2,-1,1,2,3,4,5}
+		\ymarks{-2,-1,1,2,3,4,}
+		\tlpointsep{4pt}
+		\axislabels {x}{{\tiny $-2$} -2,{\tiny $-1$} -1,{\tiny $1$} 1, {\tiny $2$} 2, {\tiny $3$} 3, {\tiny $4$} 4, {\tiny $5$} 5}
+		\axislabels {y}{{\tiny $1$} 1,{\tiny $2$} 2, {\tiny $3$} 3, {\tiny $4$} 4,  {\tiny $-1$} -1, {\tiny $-2$} -2}
+		\drawcolor[gray]{0.75} 
+		\grid{1,1}
+	\end{mfpic}
+\end{center}
+
+\item On pg 257, Your book talks about the polynomial $\displaystyle P(x)=-2x^4+5x^3+4x-7$. Find the degree, leading coefficient and $y$-intercept of this polynomial. Challenge: find the $x$-intercept(s), if any.
+\item On pg 256, Your textbook describes the meaning of \enquote{end behavior} of a polynomial. Explain the meaning of end behavior in Your own words.
+\item Describe the end behavior of $\displaystyle y=x^2$ and $\displaystyle y=x^3$. (Hint: see the first four lines of pg 257).
+\item After reading pg 257 carefully (focus on the explanations in the blue box) and Example 2, describe the end behavior of the polynomial $\displaystyle P(x)=-2x^4+5x^3+4x-7$.
+%%%%%\item Your book describes the \enquote{end behavior} of a polynomial function on pg 256. Compare the end behavior of each of these pairs of functions.
+%%%%%\begin{enumerate}[labelindent=\parindent,leftmargin=*]
+%%%%%\item $\displaystyle f(x)=2x^5+1, g(x)=100x^5+1$;
+%%%%%\item $\displaystyle f(x)=2x^5+1, g(x)=-x^5+1$;
+%%%%%\item $\displaystyle f(x)=2x^5+1, g(x)=2x^3+1$;
+%%%%%\item $\displaystyle f(x)=2x^5+1, g(x)=2x^4+1$;
+%%%%%\item $\displaystyle f(x)=2x^5+1, g(x)=2x^5-1$.
+%%%%%\end{enumerate}
+
+%\item The polynomial function $P(x)$ is given by the formula $\displaystyle P(x)=(x-2)(x+3)$. What are the $x$-intercepts of this function?
+
+\item Consider the polynomial $\displaystyle f(x)=x^2+x-6$. After reading page 256, please explain whether each of the statements listed below is true or false, and explain Your reasoning.
+
+\begin{enumerate}[topsep=-50pt,itemsep=-2ex,partopsep=0ex,parsep=1ex]
+\item 2 is a zero of $f(x)$, that is, $f(2)=0$;
+\item $x=2$ is a solution ofthe equation $\displaystyle x^2+x-6=0$;
+\item $x-2$ is a factor of $\displaystyle x^2+x-6$;
+\item 2 is an $x$-intercept of the graph of $f(x)$.
+\end{enumerate} 
+
+\item On pg 259, Your textbook introduces the Intermediate Value Theorem for Polynomials: if P is a polynomial function and $P(a)$ and $P(b)$ have opposite signs, then there exists at least one value $c$ between $a$ and $b$ for which $P(c)=0$.  If  $\displaystyle P(x)=-2x^4+5x^3+5x-7$, does the polynomial have an $x$ intercept between $x=0$ and $x=1$? (Hint: set $a=0$, $b=1$.)
+
+\item On pg 259, Your textbook explains that between two successive zeros, the graph of a polynomial lies entirely above or entirely below the $x$-axis. Verify that this is the case for the polynomial $\displaystyle f(x)=x^2+x-6$. (Hint: what are the zeros of this polynomial? How does the graph look like?)
+
+\item On page 264, Your textbook explains that any polynomial of degree $n$ has at most $n-1$ local extrema, that is, number of maxima + number of minima is at most $n-1$. How many maxima and minima does $P(x)=x^3$ have? Is this consistent with the statement in the book? Why? Why not?
+
+\item \label{item:graph1} Consider the polynomial $\displaystyle P(x)=x^3-2x^2-3x$ (see Example 5 on pg 260.)
+
+\begin{enumerate}[topsep=-50pt,itemsep=-2ex,partopsep=0ex,parsep=1ex]
+\item Find the zeros of $P$. What is the multiplicity of each zero? (Please see pg 263 for an explanation of the meaning of multiplicity.)
+\item What is the $y$-intercept?
+\item What is the end behavior? 
+\item What is $P(1)$?
+\item Note: in class, we will put all this information together to sketch the graph, without having to use a calculator or a table of values.
+\end{enumerate}
+
+\item Redo Question \ref{item:graph1} for the polynomial function: $\displaystyle f(x)=x^2(x-3)(x+1)$. Make sure to address all of these points: 
+ \begin{enumerate*}[label=\roman*),itemjoin={;\quad}]
+ \item domain 
+ \item range
+ \item $y$-intercept
+ \item $x$-intercepts
+ \item End  behavior
+ \item Shape of the graph near each $x$-intercept.
+ \end{enumerate*}
+Sketch the graph of $f(x)$ using the information you have gathered about the polynomial.% Then check that your graph matches the graph of $f(x)$ given by WolframAlpha.
+
+\item Find a possible formula for a polynomial $f$ with degree at most 2, and with $f(0)=f(1)=0, f(2)=3$.
+
+\item Find a possible formula for a polynomial $f$ with degree at most 2, and with $f(0)=0, f(1)=1$.
+
+\item Find a possible formula for a polynomial $f$ with least possible degree, and with graph passing through the points $(-3,0),(1,0),(0,-3)$.
+
+\item If  possible, find a  formula for a polynomial $f$ with degree at most 2, and with $f(0)=f(1)=f(2)=0$.
+\item A bridge looks like the graph of $\displaystyle y=-x^2+4x+12$ (assume that $x$ and $y$ are measured in feet.) A truck is 10-foot-high  and carries a load 8 feet wide. Will the truck be able to drive under the bridge?
+%%%%% \item An arch is shaped like a parabola as shown below.
+
+%%%%%\begin{center}
+%%%%%\begin{tikzpicture}[scale=2]
+%%%%%\fill[red!30!white]
+%%%%%(-0.9,-2.7) parabola bend (0,0.5) (0.9,-2.7) -- cycle;
+%%%%%\draw   (-0.9,-2.7) parabola bend (0,0.5) (0.9,-2.7);
+
+%%%%%\draw [thick, red,decorate,decoration={brace,amplitude=10pt,mirror},xshift=0.4pt,yshift=-0.4pt](-0.9,-2.7) -- (0.9,-2.7) node[black,midway,yshift=-0.6cm] {\footnotesize 20 feet};
+
+%%%%%\draw [thick, red,decorate,decoration={brace,amplitude=20pt,mirror},xshift=0.8pt,yshift=-0.4pt](0.9,-2.7) -- (0.9,0.5) vnode[black,midway,xshift=1.1cm,yshift=0.5cm] {\footnotesize 50 feet};
+%(-1.5,0) parabola (0,2.25) |- (1,0);
+%%%%%\end{tikzpicture}
+%%%%%\end{center}
+
+%%%%%Choose your own axes, and write an equation to describe the arch.
+%\begin{enumerate}[labelindent=\parindent,leftmargin=*]
+%\item Find the domain and range of $f$, and explain why the function is one-to-one.
+
+
+\end{enumerate}
+		
+
+
+
+ \begin{mdframed}[style=exampledefault,linecolor=blue,linewidth=4pt,frametitle={Looking Ahead to Next Week...}]
+ 	{\underline{Definitions that you should be familiar with by the next class meeting:} }
+ 	\begin{enumerate}[label= {  \arabic*:},labelindent=2em, style = standard,leftmargin=4pc, labelsep=*, noitemsep]
+ 		\item Degree and leading coefficient of a polynomial function;
+\item Multiplicity of an $x$-intercept of a polynomial function.
+                    % \item Inverse function.
+ 		
+ 		%\item Amplitude, period and midline.
+ 	\end{enumerate}
+ 	{\underline{You should be able to:} }
+ 	\begin{enumerate}[label= {  \arabic*:},labelindent=2em, style = standard,leftmargin=4pc, labelsep=*, noitemsep]
+ 		\item Identify the coordinates of the vertex of a quadratic function;
+                     \item Identify the function transformations of $\displaystyle f(x)=x^2$ that result in a given quadratic function $g(x)$ (note: you need to be able to complete the suqare in order to identify the transformations);
+\item Find the maximum or minimum values in a variety of applications that involve modeling using a quadratic function;
+                     \item Decide whether a function is a polynomial function;
+\item Find the degree and leading coefficient of a polynomial function; 
+\item Describe the end behavior of a polynomial function using the degree and the sign of the leading coefficient;
+\item Identify the multiplicity of an $x$-intercept of a polynomial function given in factored form;
+\item Describe the shape of the graph of a polynomial function near an $x$-intercept using the multiplicity of that $x$-intercept;
+\item Itentify the upper bound on the number total number of extrema (that is, maxima and minima) of a polynomial function using the degree of the function.
+ 	\end{enumerate}
+{\underline{Advice on how to excel in precalculus:} }
+\begin{enumerate}[label= {  \arabic*:},labelindent=2em, style = standard,leftmargin=4pc, labelsep=*, noitemsep]
+ 		\item  Always go through the discussion questions slowly again yourself after each class, to make sure you fully understand.
+Check the  work you did on the questions before class against the answers provided in class to make sure you didn’t overlook anything.
+\item Always read the sections we will cover{\bf{ before class}}.
+\item Always attempt the discussion questionsr{\bf{ before class}}.
+\item Give yourself sufficient time to do the homework: start early and don't just try to guess the answers. Work through each problem and take notes on how you attempt to solve the problem, why your attempt works or where you got stuck, and why.
+\end{enumerate}
+ 	\end{mdframed}
+
+
+\end{document} 
+              
